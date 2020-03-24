@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "98069ec34e5d7a410677fe093452a39a",
+    "revision": "4854883c59ac322260e2aa077fd64aa8",
     "url": "/MTDSmartCard/index.html"
   },
   {
-    "revision": "4638b17bcc2e720b61fb",
-    "url": "/MTDSmartCard/static/css/main.1ffe73b7.chunk.css"
+    "revision": "f153b02c4464731b1168",
+    "url": "/MTDSmartCard/static/css/main.09840f7e.chunk.css"
   },
   {
-    "revision": "8bf69ec1da7e0aa34c85",
-    "url": "/MTDSmartCard/static/js/2.a92a838f.chunk.js"
+    "revision": "f6f7a66f1e80da174779",
+    "url": "/MTDSmartCard/static/js/2.48827ee1.chunk.js"
   },
   {
-    "revision": "4638b17bcc2e720b61fb",
-    "url": "/MTDSmartCard/static/js/main.3c7c34ca.chunk.js"
+    "revision": "f153b02c4464731b1168",
+    "url": "/MTDSmartCard/static/js/main.85ea8f8a.chunk.js"
   },
   {
     "revision": "786ccbffaf4fe2aa8046",
@@ -66,5 +66,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f32ed5ad3d76067b8e43be1a0bd1ba91",
     "url": "/MTDSmartCard/static/media/nucleo-icons.f32ed5ad.eot"
+  },
+  {
+    "revision": "e8a97468c4dad9c43446e0b9cbec3620",
+    "url": "/MTDSmartCard/static/media/phone3.e8a97468.png"
   }
 ]);
