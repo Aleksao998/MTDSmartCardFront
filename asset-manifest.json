@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/MTDSmartCard/static/css/main.e5986e58.chunk.css",
-    "main.js": "/MTDSmartCard/static/js/main.080d0bb8.chunk.js",
-    "main.js.map": "/MTDSmartCard/static/js/main.080d0bb8.chunk.js.map",
+    "main.css": "/MTDSmartCard/static/css/main.4588096a.chunk.css",
+    "main.js": "/MTDSmartCard/static/js/main.79f0441b.chunk.js",
+    "main.js.map": "/MTDSmartCard/static/js/main.79f0441b.chunk.js.map",
     "runtime~main.js": "/MTDSmartCard/static/js/runtime~main.917c8f70.js",
     "runtime~main.js.map": "/MTDSmartCard/static/js/runtime~main.917c8f70.js.map",
     "static/js/2.e861d2a8.chunk.js": "/MTDSmartCard/static/js/2.e861d2a8.chunk.js",
     "static/js/2.e861d2a8.chunk.js.map": "/MTDSmartCard/static/js/2.e861d2a8.chunk.js.map",
     "index.html": "/MTDSmartCard/index.html",
-    "precache-manifest.00013af44b5cdbbd8f4108750c9c37c4.js": "/MTDSmartCard/precache-manifest.00013af44b5cdbbd8f4108750c9c37c4.js",
+    "precache-manifest.6664b7df314a175311c6d176d8414b78.js": "/MTDSmartCard/precache-manifest.6664b7df314a175311c6d176d8414b78.js",
     "service-worker.js": "/MTDSmartCard/service-worker.js",
-    "static/css/main.e5986e58.chunk.css.map": "/MTDSmartCard/static/css/main.e5986e58.chunk.css.map",
+    "static/css/main.4588096a.chunk.css.map": "/MTDSmartCard/static/css/main.4588096a.chunk.css.map",
     "static/media/ayo-ogunseinde-2.jpg": "/MTDSmartCard/static/media/ayo-ogunseinde-2.bfc688ca.jpg",
+    "static/media/card1.png": "/MTDSmartCard/static/media/card1.d779ebe0.png",
     "static/media/clem-onojeghuo-2.jpg": "/MTDSmartCard/static/media/clem-onojeghuo-2.bb4b9ac9.jpg",
     "static/media/clem-onojeghuo-3.jpg": "/MTDSmartCard/static/media/clem-onojeghuo-3.ae11d928.jpg",
     "static/media/daniel-olahh.jpg": "/MTDSmartCard/static/media/daniel-olahh.facbbdb7.jpg",
@@ -19,7 +20,6 @@
     "static/media/fabio-mangione.jpg": "/MTDSmartCard/static/media/fabio-mangione.f26c34bb.jpg",
     "static/media/joe-gardner-2.jpg": "/MTDSmartCard/static/media/joe-gardner-2.76ff47ae.jpg",
     "static/media/login-image.jpg": "/MTDSmartCard/static/media/login-image.be9fa468.jpg",
-    "static/media/paper-kit.scss": "/MTDSmartCard/static/media/nucleo-icons.f32ed5ad.eot",
-    "static/media/phone3.png": "/MTDSmartCard/static/media/phone3.e8a97468.png"
+    "static/media/paper-kit.scss": "/MTDSmartCard/static/media/nucleo-icons.f32ed5ad.eot"
   }
 }

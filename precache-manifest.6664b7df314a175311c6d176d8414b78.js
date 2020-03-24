@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bba135b2dbe8432b740aa116a1704967",
+    "revision": "11f31c771c2c5607cabc070c15a9d60a",
     "url": "/MTDSmartCard/index.html"
   },
   {
-    "revision": "5a333b5542946b76aac1",
-    "url": "/MTDSmartCard/static/css/main.e5986e58.chunk.css"
+    "revision": "3a1bd74adac6d8de01d8",
+    "url": "/MTDSmartCard/static/css/main.4588096a.chunk.css"
   },
   {
     "revision": "a4278e6739b99ee41507",
     "url": "/MTDSmartCard/static/js/2.e861d2a8.chunk.js"
   },
   {
-    "revision": "5a333b5542946b76aac1",
-    "url": "/MTDSmartCard/static/js/main.080d0bb8.chunk.js"
+    "revision": "3a1bd74adac6d8de01d8",
+    "url": "/MTDSmartCard/static/js/main.79f0441b.chunk.js"
   },
   {
     "revision": "786ccbffaf4fe2aa8046",
@@ -22,6 +22,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "bfc688ca490f0079051aea5b8ec75cbe",
     "url": "/MTDSmartCard/static/media/ayo-ogunseinde-2.bfc688ca.jpg"
+  },
+  {
+    "revision": "d779ebe02514a69e96dfa6c7096112d0",
+    "url": "/MTDSmartCard/static/media/card1.d779ebe0.png"
   },
   {
     "revision": "bb4b9ac9fd07e48f86c719495b65341c",
@@ -66,9 +70,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f32ed5ad3d76067b8e43be1a0bd1ba91",
     "url": "/MTDSmartCard/static/media/nucleo-icons.f32ed5ad.eot"
-  },
-  {
-    "revision": "e8a97468c4dad9c43446e0b9cbec3620",
-    "url": "/MTDSmartCard/static/media/phone3.e8a97468.png"
   }
 ]);
