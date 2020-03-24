@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "807eecc683c05b322b5d1dead9593200",
+    "revision": "98069ec34e5d7a410677fe093452a39a",
     "url": "/MTDSmartCard/index.html"
   },
   {
-    "revision": "bbb5f056d34efbd686dd",
+    "revision": "4638b17bcc2e720b61fb",
     "url": "/MTDSmartCard/static/css/main.1ffe73b7.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/MTDSmartCard/static/js/2.a92a838f.chunk.js"
   },
   {
-    "revision": "bbb5f056d34efbd686dd",
-    "url": "/MTDSmartCard/static/js/main.cfb4d0ec.chunk.js"
+    "revision": "4638b17bcc2e720b61fb",
+    "url": "/MTDSmartCard/static/js/main.3c7c34ca.chunk.js"
   },
   {
     "revision": "786ccbffaf4fe2aa8046",
