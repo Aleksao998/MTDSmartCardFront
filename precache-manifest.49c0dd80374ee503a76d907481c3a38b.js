@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "07ace310858c9d79f69301019259dcac",
+    "revision": "b2c811bf877321d1b60f56339f5f56d5",
     "url": "/MTDSmartCard/index.html"
   },
   {
-    "revision": "6823bf367e96d962a086",
-    "url": "/MTDSmartCard/static/css/main.1e7a100e.chunk.css"
+    "revision": "7f5c0c219675671797a9",
+    "url": "/MTDSmartCard/static/css/main.ec61a7d5.chunk.css"
   },
   {
     "revision": "a4278e6739b99ee41507",
     "url": "/MTDSmartCard/static/js/2.e861d2a8.chunk.js"
   },
   {
-    "revision": "6823bf367e96d962a086",
-    "url": "/MTDSmartCard/static/js/main.79f0441b.chunk.js"
+    "revision": "7f5c0c219675671797a9",
+    "url": "/MTDSmartCard/static/js/main.84181e47.chunk.js"
   },
   {
     "revision": "786ccbffaf4fe2aa8046",
@@ -36,16 +36,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/MTDSmartCard/static/media/clem-onojeghuo-3.ae11d928.jpg"
   },
   {
-    "revision": "facbbdb787d77f975904ba9fa99b15c6",
-    "url": "/MTDSmartCard/static/media/daniel-olahh.facbbdb7.jpg"
-  },
-  {
     "revision": "2051e0e847124c536df9c01a3f672032",
     "url": "/MTDSmartCard/static/media/erik-lucatero-2.2051e0e8.jpg"
   },
   {
     "revision": "f26c34bb88eb83d5aae99c7dbf3ddd48",
     "url": "/MTDSmartCard/static/media/fabio-mangione.f26c34bb.jpg"
+  },
+  {
+    "revision": "13d566122cf420c4fab760281d33edf2",
+    "url": "/MTDSmartCard/static/media/image.13d56612.JPG"
   },
   {
     "revision": "76ff47ae5c64ccda5af18326bb272058",
