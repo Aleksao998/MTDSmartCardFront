@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import LandingPage from "views/LandingPage/LandingPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import RegisterPage from "views/RegistrationPage/RegisterPage";
+import NotFoundPage from "views/ErrorPages/404ErrorPage/NotFoundPage"
 const AppRoutes = () =>(
     <BrowserRouter>
     <Switch>
@@ -20,7 +21,7 @@ const AppRoutes = () =>(
         render={props => <RegisterPage {...props} />}
       />
 
-      <Redirect to="/index" />
+      <Route component={NotFoundPage}/>
 
     </Switch>
   </BrowserRouter>
