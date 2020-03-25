@@ -28,20 +28,12 @@ function ExamplesNavbar() {
 
   React.useEffect(() => {
     const updateNavbarColor = () => {
-      if (
-        document.documentElement.scrollTop > 299 ||
-        document.body.scrollTop > 299
-      ) {
+     
         setNavbarColor("");
-      } else if (
-        document.documentElement.scrollTop < 300 ||
-        document.body.scrollTop < 300
-      ) {
-        setNavbarColor("navbar-transparent");
-      }
+      
     };
-
-    window.addEventListener("scroll", updateNavbarColor);
+    updateNavbarColor()
+   
 
     return function cleanup() {
       window.removeEventListener("scroll", updateNavbarColor);
@@ -50,7 +42,7 @@ function ExamplesNavbar() {
   return (
     <Navbar
       className={classnames("fixed-top", navbarColor)}
-      color-on-scroll="300"
+      color-on-scroll="200"
       expand="lg"
     >
       <Container>
@@ -90,8 +82,14 @@ function ExamplesNavbar() {
             </NavItem>
 
             <NavItem>
-              <NavLink to="/product" tag={Link}>
+              <NavLink to="/product-page" tag={Link}>
                  Product Page
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink to="/profile-page" tag={Link}>
+                 Profile page
               </NavLink>
             </NavItem>
 

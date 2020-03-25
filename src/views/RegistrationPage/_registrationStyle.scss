@@ -81,9 +81,17 @@
     border-radius: 8px;
     color: #222!important;
     max-width: 500px!important;
-    margin: 20px 0 70px;
+    margin: 10px 0 70px!important;
     min-height: 400px;
     padding: 30px;
+}
+//Iphone 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+    .card-register {
+        margin: 85px 0 70px!important;
+    }
 }
 
 .page-header .title, .page-header .info-title, .carousel-caption .title, .carousel-caption .info-title {

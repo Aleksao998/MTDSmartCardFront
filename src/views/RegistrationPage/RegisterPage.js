@@ -5,7 +5,7 @@ import React from "react";
 import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import Navbar from "components/Navbars/Navbar.js";
 
 function RegisterPage() {
   document.documentElement.classList.remove("nav-open");
@@ -17,7 +17,7 @@ function RegisterPage() {
   });
   return (
     <>
-      <ExamplesNavbar />
+      <Navbar />
       <div
         className="page-header"
         style={{
@@ -55,7 +55,7 @@ function RegisterPage() {
                   <Button
                     className="btn-link"
                     color="danger"
-                    href="#pablo"
+                    href="/profile-page"
                     onClick={e => e.preventDefault()}
                   >
                     Forgot password?

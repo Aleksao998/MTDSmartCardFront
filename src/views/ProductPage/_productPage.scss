@@ -1,0 +1,336 @@
+img {
+	max-width: 100%
+}
+
+.section {
+	background: #fff;
+	position: relative;
+	z-index: 9
+}
+
+.bg-lightgray {
+	background: #f2f2f2!important
+}
+
+.container {
+	padding-left: 30px;
+	padding-right: 30px
+}
+
+p {
+	line-height: 1.6em
+}
+
+.col-section-header>h2 {
+	margin-top: 0;
+	font-size: 34px;
+	line-height: 1.4em;
+	margin-bottom: 20px;
+	font-weight: 300
+}
+
+.col-section-header>p {
+	color: rgba(0, 0, 0, .4);
+	margin-top: 0
+}
+
+a.app-btn {
+	color: #202020;
+	text-decoration: none
+}
+
+.app-btn {
+	background: #202020;
+	display: inline-block;
+	width: 180px;
+	padding: 2px;
+	position: relative;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	transition: all .3s ease
+}
+
+.app-btn:after {
+	content: ' ';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	bottom: 2px;
+	right: 2px;
+	border: solid 1px #fff;
+	z-index: 10;
+	opacity: .8
+}
+
+.app-btn:hover {
+	background: #202020
+}
+
+a.btn-minimal {
+	text-decoration: none;
+	color: #202020
+}
+
+.btn-minimal {
+	position: relative;
+	padding: 14px 25px;
+	line-height: 1em;
+	border: solid 1px silver;
+	color: #202020;
+	text-transform: uppercase;
+	font-weight: 500;
+	letter-spacing: 2px;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	transition: all .3s ease;
+	background: 0 0;
+	display: inline-block
+}
+
+.btn-minimal:hover {
+	background: #202020;
+	color: #fff;
+	border-color: #202020
+}
+
+.features-section {
+	padding: 100px 0;
+	padding-top: 75px
+}
+
+.features-section .phone-img {
+	text-align: center;
+	display: block
+}
+
+.features-text {
+	margin-top: 100px;
+	text-align: center
+}
+
+.features-text>h2 {
+	font-size: 38px;
+	font-weight: 300;
+	margin-top: 0;
+	margin-bottom: 15px;
+	color: #202020
+}
+
+.features-text>p {
+	font-size: 16px;
+	color: rgba(0, 0, 0, .4);
+	margin: 0;
+	font-weight: 500
+}
+
+.features-row {
+	margin-top: 100px
+}
+
+.feature {
+	position: relative
+}
+
+.feature>.icon {
+	font-size: 54px;
+	margin-bottom: 20px
+}
+
+.feature>.content>h4 {
+	margin: 0;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 20px;
+	font-weight: 500
+}
+
+.feature>.content>p {
+	color: rgba(0, 0, 0, .4);
+	margin: 0
+}
+
+.features-2-section {
+	padding-top: 100px
+}
+
+.video-section {
+	padding: 100px 0
+}
+
+.video-section .col-section-header {
+	padding-top: 50px
+}
+
+.features-4-section {
+	padding: 100px 0
+}
+
+.features-phone {
+	margin: auto
+}
+
+.features-col {
+	padding-top: 60px
+}
+
+.col-feature {
+	margin-bottom: 60px
+}
+
+.col-feature>.icon {
+	font-size: 64px
+}
+
+.col-feature>.content>h4 {
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 2px;
+	margin: 0;
+	margin-bottom: 15px;
+	font-weight: 500
+}
+
+.col-feature>.content>p {
+	color: rgba(0, 0, 0, .4);
+	font-size: 16px
+}
+
+.pricing-section {
+	padding: 100px 0
+}
+
+.pricing-section .col-section-header {
+	padding-top: 50px
+}
+
+.pricing-section .col-section-header>p {
+	margin-bottom: 35px
+}
+
+.p-table {
+	padding: 60px 20px;
+	border: solid 2px #e7e7e7;
+	text-align: center
+}
+
+.p-table>.header {
+	margin-bottom: 40px
+}
+
+.p-table>.header>h4 {
+	font-size: 24px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 40px
+}
+
+.p-table>.header>.price {
+	line-height: 84px;
+	height: 84px
+}
+
+.p-table>.header>.price>span {
+	display: inline-block;
+	position: relative
+}
+
+.p-table>.header>.price>.currency {
+	vertical-align: top;
+	line-height: 1em;
+	top: 18px
+}
+
+.p-table>.header>.price>.amount {
+	font-size: 84px;
+	font-weight: 600
+}
+
+.p-table>.header>.price>.period {
+	line-height: 1em;
+	vertical-align: baseline;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	bottom: 5px;
+	color: rgba(0, 0, 0, .4)
+}
+
+.p-table>.items {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	margin-bottom: 35px
+}
+
+.p-table>.items>li {
+	padding: 8px 0;
+	color: rgba(0, 0, 0, .4);
+	font-weight: 500
+}
+
+@media (max-width:992px) {
+	.feature {
+		text-align: center
+	}
+	.pricing-section .col-section-header,
+	.video-section .col-section-header {
+		padding-bottom: 50px;
+		padding-top: 0
+	}
+	.p-table {
+		margin-bottom: 50px
+	}
+	div:last-of-type>.p-table {
+		margin-bottom: 0
+	}
+	.col-feature {
+		text-align: center;
+		max-width: 400px;
+		margin: auto;
+		margin-bottom: 25px
+	}
+	.features-phone {
+		margin-top: 80px;
+		margin-bottom: 30px
+	}
+	.features-col {
+		padding: 0
+	}
+	.container {
+		padding-left: 40px;
+		padding-right: 40px
+	}
+	.feature {
+		margin-bottom: 25px
+	}
+	div:last-of-type>.feature {
+		margin-bottom: 0
+	}
+}
+
+@media (max-width:768px) {
+	.container {
+		padding-left: 30px;
+		padding-right: 30px
+	}
+}
+
+@media (max-width:500px) {
+	.app-btn {
+		margin: 5px auto!important;
+		display: block
+	}
+}
+
+.move {
+	display: contents!important
+}
+
+.fullScreenVideo {
+	width: 100%;
+	height: 100%
+}
+
+.video-container {
+	height: 100%
+}
