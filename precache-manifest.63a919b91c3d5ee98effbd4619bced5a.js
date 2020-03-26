@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "73aff670eba84d8febe0bcda064b5613",
+    "revision": "e8bc9b6ef929fc6eabeae7fbcc44db16",
     "url": "/MTDSmartCard/index.html"
   },
   {
-    "revision": "6b9b7ee6c72349a934ab",
-    "url": "/MTDSmartCard/static/css/main.98e65336.chunk.css"
+    "revision": "4adfd5f1de6b7d95498a",
+    "url": "/MTDSmartCard/static/css/main.87bedd4d.chunk.css"
   },
   {
-    "revision": "c9b33fd119d11d1baed8",
-    "url": "/MTDSmartCard/static/js/2.36a5257c.chunk.js"
+    "revision": "235e4a5fa73563009c62",
+    "url": "/MTDSmartCard/static/js/2.55ab8590.chunk.js"
   },
   {
-    "revision": "6b9b7ee6c72349a934ab",
-    "url": "/MTDSmartCard/static/js/main.1a5a2426.chunk.js"
+    "revision": "4adfd5f1de6b7d95498a",
+    "url": "/MTDSmartCard/static/js/main.aba3440d.chunk.js"
   },
   {
     "revision": "786ccbffaf4fe2aa8046",
@@ -24,16 +24,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/MTDSmartCard/static/media/about-img.3ededb3c.jpg"
   },
   {
-    "revision": "bfc688ca490f0079051aea5b8ec75cbe",
-    "url": "/MTDSmartCard/static/media/ayo-ogunseinde-2.bfc688ca.jpg"
-  },
-  {
     "revision": "d779ebe02514a69e96dfa6c7096112d0",
     "url": "/MTDSmartCard/static/media/card1.d779ebe0.png"
-  },
-  {
-    "revision": "bb4b9ac9fd07e48f86c719495b65341c",
-    "url": "/MTDSmartCard/static/media/clem-onojeghuo-2.bb4b9ac9.jpg"
   },
   {
     "revision": "ae11d928aae96245020bb59a1910f758",
