@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/MTDSmartCard/precache-manifest.63a919b91c3d5ee98effbd4619bced5a.js"
+  "/MTDSmartCard/precache-manifest.1462d35e47bc0c03b52bd7afb8d22e4d.js"
 );
 
 self.addEventListener('message', (event) => {
