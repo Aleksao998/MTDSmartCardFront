@@ -2,7 +2,7 @@ import React from "react";
 
 
 const VideoSection = () => (
-    <section id='video' class='section video-section bg-lightgray' >
+    <section id='video' class='section video-section' style={{backgroundColor:"#f9f9ff"}}>
         <div class='container' >
             <div class='row' >
                 <div class='col-md-4' >

@@ -3,3 +3,11 @@
 @import "../views/ErrorPages/404ErrorPage/notFoundStyle";
 @import "../views/ProductPage/productPage";
 @import "../views/ProductPage/TitleSection/productTitle";
+@import "../views//ProductPage/FeatureSection/featureSection";
+@import "../views/ProfilePage/MainSection/mainSection";
+@import "../views/ProfilePage/ContactSection/contactSection";
+$fa-font-path : "~@fortawesome/fontawesome-free-webfonts/webfonts";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";

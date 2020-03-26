@@ -7,7 +7,8 @@ import FeatureSection from "./FeatureSection/FeatureSection";
 import VideoSection from "./VideoSection/VideoSection";
 import PricingSection from "./PricingSection/PricingSection";
 import TitleSection from "./TitleSection/TitleSection";
-
+import DetailSection from "./DetailSection/DetailSection";
+import UniqueSection from "./UniqueSections/UniqueSections";
 function ProductPage() {
     document.documentElement.classList.remove("nav-open");
     React.useEffect(() => {
@@ -22,9 +23,10 @@ function ProductPage() {
         
         <div id='main-wrapper' >  
             <TitleSection/>
-            <FeatureSection/>
+            <FeatureSection/>  
+            <DetailSection/>
             <VideoSection/>
-            <PricingSection/>	
+            <UniqueSection/>
         </div>
     </div>
   );
