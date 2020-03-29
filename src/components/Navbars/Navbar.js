@@ -81,22 +81,17 @@ function ExamplesNavbar() {
             </NavItem>
 
             <NavItem>
-              <NavLink to="/profile-page" tag={Link}>
+              <NavLink to="/profile-page/5e7f53c3f60905250856fde3" tag={Link}>
                  Profile page
               </NavLink>
             </NavItem>
 
             <NavItem>
-              <NavLink to="/login" tag={Link}>
+              <NavLink to="/login-page" tag={Link}>
                  Login
               </NavLink>
             </NavItem>
 
-            <NavItem>
-              <NavLink to="/register-page" tag={Link}>
-                 Create account
-              </NavLink>
-            </NavItem>
 
             
           </Nav>

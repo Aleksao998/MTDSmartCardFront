@@ -2,20 +2,12 @@ import React from "react";
 // reactstrap components
 import {
     Button,
-    Label,
-    FormGroup,
-    Input,
-    NavItem,
-    NavLink,
-    Nav,
-    TabContent,
-    TabPane,
-    Container,
     Row,
     Col
   } from "reactstrap";
 
-const MainSection = () => (
+const MainSection = (props) => (
+ 
     <div>
         <div className="owner">
             <div className="avatar">
@@ -27,14 +19,14 @@ const MainSection = () => (
             </div>
             <div className="name">
                 <h4 className="title">
-                    Jane Faker 
+                    {props.firstName} {props.lastName}
                 </h4>
                 <h6 className="description">- Company name, job title -</h6>
             </div>
         </div>
         <Row>
             <Col className="ml-auto mr-auto text-center" md="6">
-            <Button className="btn-round" color="default" outline>
+            <Button className="btn-round" color="default" outline onClick={props.downloadContact}>
                 <i className="fa fa-save" /> Save Contact
             </Button>
             

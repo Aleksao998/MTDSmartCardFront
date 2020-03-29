@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "components/Navbars/NavbarBlack.js";
+import Navbar from "components/Navbars/Navbar.js";
 
 
 //Sections
