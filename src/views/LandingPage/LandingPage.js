@@ -1,25 +1,10 @@
 
 import React from "react";
 
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
+
 
 // core components
-import Navbar from "components/Navbars/Navbar";
+
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
@@ -40,7 +25,6 @@ function LandingPage() {
 
   return (
     <div>
-      <Navbar />
       <LandingPageHeader />
       <div className="main">
         <DetailSection/>

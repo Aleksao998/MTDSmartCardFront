@@ -15,7 +15,7 @@ const VideoSection = () => (
                 </div>
                 <div class='col-md-8' >
                     <div class='video-container' >
-                        <iframe src="https://www.youtube.com/embed/GIalL5fkhPM?rel=0&amp;showinfo=0" className="fullScreenVideo" frameborder="0" allowfullscreen></iframe>
+                        <iframe title="How to use!" src="https://www.youtube.com/embed/GIalL5fkhPM?rel=0&amp;showinfo=0" className="fullScreenVideo" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ const FeatureSection = () => (
             <div className="row">
                 <div className="center">
                     <div class='features-phone noPadding' >
-                        <img src={logo} className="productImage" />
+                        <img src={logo} className="productImage" alt="Product Image" />
                         
                     </div>
                 </div>

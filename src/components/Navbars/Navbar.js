@@ -17,10 +17,10 @@ import {
 
 
 
-function ExamplesNavbar() {
+function ExamplesNavbar(props) {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
-
+  const profileUrl="/profile-page/"+props.userId;
   const toggleNavbarCollapse = () => {
     setNavbarCollapse(!navbarCollapse);
     document.documentElement.classList.toggle("nav-open");
@@ -31,7 +31,7 @@ function ExamplesNavbar() {
       setNavbarColor("");
     
 
-  });
+  },[navbarColor]);
   return (
     <Navbar
       className={classnames("fixed-top", navbarColor)}
@@ -80,17 +80,33 @@ function ExamplesNavbar() {
               </NavLink>
             </NavItem>
 
-            <NavItem>
-              <NavLink to="/profile-page/5e7f53c3f60905250856fde3" tag={Link}>
-                 Profile page
-              </NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink to="/login-page" tag={Link}>
-                 Login
-              </NavLink>
-            </NavItem>
+            {
+              props.isAuth ?       
+                          <NavItem>
+                                <NavLink to={profileUrl} tag={Link}>
+                                  Profile
+                                </NavLink>
+                          </NavItem>
+                          :
+                          <NavItem>
+                            <NavLink to="/login-page" tag={Link}>
+                              Login
+                            </NavLink>
+                          </NavItem>
+            }
+            {
+              props.isAuth ?                         
+                          <NavItem onClick={props.logout}>
+                          <NavLink to="/" tag={Link}>
+                          logout
+                          </NavLink>
+                          </NavItem>
+                          :
+                          null
+            }
+                          
+            
+            
 
 
             

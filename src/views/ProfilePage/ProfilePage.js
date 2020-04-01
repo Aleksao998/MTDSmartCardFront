@@ -4,9 +4,8 @@ import React, { useState } from 'react';
 import {
   Button,
 } from "reactstrap";
-import FileSaver from "file-saver";
 // core components
-import Navbar from "components/Navbars/Navbar.js";
+
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
@@ -56,28 +55,29 @@ function ProfilePage() {
     address:"",
     birthday:""
   });
+
   const handleOnChange = event => {
       const { name, value } = event.target;
       setNewState({...newState,[name]: value });
   };
 
   const downloadContact=()=>{
-    const Url="http://localhost:3003/profile/createVCF?"+
-                                                          "firstName="+firstName+"&"+
-                                                          "lastName="+lastName+"&"+
-                                                          "organization="+"MTD"+"&"+
-                                                          "jobTitle="+"software engineer"+"&"+
-                                                          "homePhone="+state.homeNumber+"&"+
-                                                          "mobileNumber="+state.mobileNumber+"&"+
-                                                          "email="+state.email+"&"+
-                                                          "workEmail="+state.workEmail+"&"+
-                                                          "facebook="+state.facebook+"&"+
-                                                          "linkedIn="+state.linkedIn+"&"+
-                                                          "twitter="+state.twitter+"&"+
-                                                          "snapchat="+state.snapchat+"&"+
-                                                          "youtube="+state.youtube+"&"+
-                                                          "address="+state.address;
-
+   
+    const Url=`http://localhost:3003/profile/createVCF?
+                                                          firstName=${firstName}&
+                                                          lastName=${lastName}&
+                                                          organization=MTD&
+                                                          jobTitle=software engineer&
+                                                          homePhone=${state.homeNumber}&
+                                                          mobileNumber=${state.mobileNumber}&
+                                                          email=${state.email}&
+                                                          workEmail=${state.workEmail}&
+                                                          facebook=${state.facebook}&
+                                                          linkedIn=${state.linkedIn}&
+                                                          twitter=${state.twitter}&
+                                                          snapchat=${state.snapchat}&
+                                                          youtube=${state.youtube}&
+                                                          address=${state.address}`;
     console.log(Url);                                                     
     fetch(Url, {
       method:"GET",
@@ -100,6 +100,7 @@ function ProfilePage() {
     });
 
   }
+
   document.documentElement.classList.remove("nav-open");
 
 
@@ -131,10 +132,10 @@ function ProfilePage() {
     return function cleanup() {
       document.body.classList.remove("landing-page");
     };
-  });
+  },[firstName,lastName,ScreenSize]);
 
   const editProfile = () =>{
-    if(ButtonText == "Edit profile"){
+    if(ButtonText === "Edit profile"){
       setButtonText("Save");
       setButtonIcon("fa fa-save");
       setEditMode(1);
@@ -142,19 +143,19 @@ function ProfilePage() {
     else{
       console.log(newState);
       setState({...state,
-                          ["mobileNumber"]: newState.mobileNumber,
-                          ["homeNumber"]: newState.homeNumber,
-                          ["email"]:newState.email,
-                          ["workEmail"]:newState.workEmail, 
-                          ["twitter"]: newState.twitter,
-                          ["linkedin"]: newState.linkedin,
-                          ["facebook"]:newState.facebook,
-                          ["snapchat"]:newState.snapchat, 
-                          ["youtube"]: newState.youtube,
-                          ["whatsapp"]: newState.whatsapp,
-                          ["viber"]:newState.viber,
-                          ["address"]:newState.address, 
-                          ["birthday"]:newState.birthday
+                          "mobileNumber": newState.mobileNumber,
+                          "homeNumber": newState.homeNumber,
+                          "email":newState.email,
+                          "workEmail":newState.workEmail, 
+                          "twitter": newState.twitter,
+                          "linkedin": newState.linkedin,
+                          "facebook":newState.facebook,
+                          "snapchat":newState.snapchat, 
+                          "youtube": newState.youtube,
+                          "whatsapp": newState.whatsapp,
+                          "viber":newState.viber,
+                          "address":newState.address, 
+                          "birthday":newState.birthday
                 });
       console.log(state);
       
@@ -165,7 +166,6 @@ function ProfilePage() {
   }
   return (
     <>
-      <Navbar />
       <ProfilePageHeader />
       <a ref={linkRef}/>
       <div className="section profile-content">

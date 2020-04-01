@@ -1,50 +1,101 @@
 
-import React, { useState } from 'react';
-import { useParams } from "react-router-dom";
+import React, { useState,useEffect } from 'react';
+
 // reactstrap components
-import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
+import { Button, Card, Form, Container, Row, Col } from "reactstrap";
 
 // core components
-import Navbar from "components/Navbars/Navbar.js";
+
 
 function RegisterPage(props) {
+  const [error, setError] = useState("");
+  const [check, setCheck] = useState(false);
   const [state, setState] = useState({
     email:"",
     password:"",
+    firstName:"",
+    lastName:"",
+    repassword:"",
   });
-
+ 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     setState({...state,[name]: value });
   };
 
+  const handleCheck = () =>{
+    setCheck(!check);
+  }
+  const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
+
   const createNewProfile = (event) =>{
     event.preventDefault();
-    console.log(state.email,state.password);
-    const phoneURL="http://172.20.10.4:3003/profile/createProfile";
-    const desctopeURL="http://localhost:3003/profile/createProfile";
-    fetch(phoneURL,{
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: state.email,
-        password: state.password
-      })
-    })
+    console.log(state.email,state.firstName,state.lastName,state.password,state.repassword, check);
+    //Check if email already exist
+    fetch("http://localhost:3003/profile/checkEmail?email="+state.email,)
+    .then(res => {
+      console.log("status: "+res.status);
+      if (res.status !== 200) {
+        console.log("Email already exist!");
+        setError("Email already exist!");
+        return;
+      }
+
+        //Check if all fields are filed
+        if(state.email==="" || state.password==="" || state.firstName==="" || state.lastName==="" || state.repassword===""){
+    
+        console.log("All field must be filed!");
+        setError("All field must be filed!");
+        return;
+      }
+
+      
+      //Check if password match
+      if(state.password !== state.repassword){
+        setError("Password does not match!");
+        return;
+      }
+
+        //Check if password match
+      if(state.password !== state.repassword){
+        setError("Password does not match!");
+        return;
+      }
+
+      //if check button is checked
+      if(check !== true){
+        setError("Need to check checkbox!");
+        return;
+      }
+
+      return fetch("http://localhost:3003/auth/signup",{
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          id:props.id,
+          email: state.email,
+          password: state.password,
+          firstName:state.firstName,
+          lastName:state.lastName,
+
+          })
+        })
+     })
     .then(res => {
       if (res.status !== 200 && res.status !== 201) {
         throw new Error('Creating or editing a post failed!');
       }
-      //redirect
-      console.log("redirect");
+      props.useForceUpdate();
     })
     .catch(err => {
       console.log(err);
     });
-
   }
+
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("register-page");
@@ -54,7 +105,6 @@ function RegisterPage(props) {
   });
   return (
     <>
-      <Navbar />
       <div
         className="page-header"
         style={{
@@ -69,7 +119,12 @@ function RegisterPage(props) {
                 <h3 className="title mx-auto">Welcome</h3>
                 
                 <Form className="register-form">
-
+                  {
+                    error ? 
+                          <div> {error} </div>
+                          :
+                          null
+                  }
                   <div class="form-group">
                     <input type="text" class="form-input" name="firstName" id="firstName" onChange={handleOnChange}  placeholder="Your firstName"/>
                     
@@ -87,11 +142,11 @@ function RegisterPage(props) {
                       <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                   </div>
                   <div class="form-group">
-                      <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/>
+                      <input type="password" class="form-input" name="repassword" id="repassword" onChange={handleOnChange}  placeholder="Repeat your password"/>
                   </div>
                   <div class="form-group">
-                      <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                      <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                      <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" onChange={handleCheck} />
+                      <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="/#" class="term-service">Terms of service</a></label>
                   </div>
                   <Button block className="form-submit" color="danger"   onClick={createNewProfile}>
                     Create account

@@ -1,13 +1,28 @@
 
-import React from "react";
+import React, {useState} from "react";
 
 // reactstrap components
-import { Button, Card, Form, Input, Container, Row, Col } from "reactstrap";
+import { Button, Card, Form, Container, Row, Col } from "reactstrap";
 
-// core components
-import Navbar from "components/Navbars/Navbar.js";
 
-function LoginPage() {
+
+function LoginPage(props) {
+  const [state, setState] = useState({
+    email:"",
+    password:"",
+  });
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setState({...state,[name]: value });
+  };
+
+  
+
+  
+
+  
+
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("register-page");
@@ -17,7 +32,7 @@ function LoginPage() {
   });
   return (
     <div>
-      <Navbar />
+  
       <div
         className="page-header"
         style={{
@@ -34,13 +49,13 @@ function LoginPage() {
                 <Form className="register-form">
                   
                   <div class="form-group">
-                      <input type="email" class="form-input" name="email" id="email" placeholder="Your Email"/>
+                      <input type="email" class="form-input" name="email" id="email" onChange={handleOnChange}  placeholder="Your Email"/>
                   </div>
                   <div class="form-group">
-                      <input type="text" class="form-input" name="password" id="password" placeholder="Password"/>
+                      <input type="text" class="form-input" name="password" id="password" onChange={handleOnChange}  placeholder="Password"/>
                       <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                   </div>
-                  <Button block className="form-submit" color="danger">
+                  <Button block className="form-submit"  onClick={(event) => {props.login(event,state.email,state.password)}} color="danger">
                     Login
                   </Button>
                 </Form>
