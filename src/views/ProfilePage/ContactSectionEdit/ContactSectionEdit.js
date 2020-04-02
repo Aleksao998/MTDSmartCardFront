@@ -24,7 +24,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Mobile phone:</p>
-                                        <input name="mobileNumber" type="tel" onChange={props.handleOnChange} placeholder="e.g. 63204030"></input>
+                                        <input name="mobileNumber" type="tel" value={props.state.mobileNumber} onChange={props.handleOnChange} ></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -37,7 +37,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left",paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Home phone:</p>
-                                        <input name="homeNumber" type="tel" onChange={props.handleOnChange} placeholder="e.g. 113808624"></input>
+                                        <input name="homeNumber" type="tel" value={props.state.homeNumber}  onChange={props.handleOnChange} placeholder="e.g. 113808624"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -50,7 +50,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Email</p>
-                                        <input name="email" type="text" onChange={props.handleOnChange} placeholder="e.g. aleksaopacic@gmail.com"></input>
+                                        <input name="email" type="text" value={props.state.email}  onChange={props.handleOnChange}  placeholder="e.g. aleksaopacic@gmail.com"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -63,7 +63,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Work Email</p>
-                                        <input name="workEmail" type="text" onChange={props.handleOnChange} placeholder="e.g. opacicaleksa@gmail.com"></input>
+                                        <input name="workEmail" type="text" value={props.state.workEmail}  onChange={props.handleOnChange} placeholder="e.g. opacicaleksa@gmail.com"></input>
                                     </td>
                                 </tr>
 
@@ -89,7 +89,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Twitter:</p>
-                                        <input name="twitter" type="text" onChange={props.handleOnChange} placeholder="e.g. AleksaOpacic"></input>
+                                        <input name="twitter" type="text" value={props.state.twitter} onChange={props.handleOnChange} placeholder="e.g. AleksaOpacic"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -102,7 +102,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left",paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">LinkedIn:</p>
-                                        <input name="linkedin" type="text" onChange={props.handleOnChange} placeholder="e.g. AleksaO"></input>
+                                        <input name="linkedin" type="text" value={props.state.linkedin} onChange={props.handleOnChange} placeholder="e.g. AleksaO"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -115,7 +115,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"3!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Facebook</p>
-                                        <input name="facebook" type="text" onChange={props.handleOnChange} placeholder="e.g. aleksaopacic"></input>
+                                        <input name="facebook" type="text" value={props.state.facebook} onChange={props.handleOnChange} placeholder="e.g. aleksaopacic"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -128,7 +128,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Snapchat</p>
-                                        <input name="snapchat" type="text" onChange={props.handleOnChange} placeholder="e.g. AleksaO"></input>
+                                        <input name="snapchat" type="text"  value={props.state.snapchat} onChange={props.handleOnChange} placeholder="e.g. AleksaO"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -141,7 +141,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Youtube</p>
-                                        <input name="youtube" type="text" onChange={props.handleOnChange} placeholder="e.g. AleksaO"></input>
+                                        <input name="youtube" type="text"  value={props.state.youtube} onChange={props.handleOnChange} placeholder="e.g. AleksaO"></input>
                                     </td>
                                 </tr>
 
@@ -169,7 +169,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">WhatsApp:</p>
-                                        <input name="whatsapp" type="tel" onChange={props.handleOnChange} placeholder="e.g. +381621203040"></input>
+                                        <input name="whatsapp" type="tel"   value={props.state.whatsapp} onChange={props.handleOnChange} placeholder="e.g. +381621203040"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -182,7 +182,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left",paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Viber:</p>
-                                        <input name="viber" type="tel" onChange={props.handleOnChange} placeholder="e.g. +381621203040"></input>
+                                        <input name="viber" type="tel" value={props.state.viber} onChange={props.handleOnChange} placeholder="e.g. +381621203040"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -195,7 +195,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Adress:</p>
-                                        <input name="address" type="text" onChange={props.handleOnChange} placeholder="e.g. Hektoroviceva 24,Beograd"></input>
+                                        <input name="address" type="text" value={props.state.address}  onChange={props.handleOnChange} placeholder="e.g. Hektoroviceva 24,Beograd"></input>
                                     </td>
                                 </tr>
                                 <br></br>
@@ -208,7 +208,7 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">BirthDay</p>
-                                        <input name="birthday" type="text" onChange={props.handleOnChange} placeholder="e.g. 30.07.1998"></input>
+                                        <input name="birthday" type="text" value={props.state.birthday} onChange={props.handleOnChange} placeholder="e.g. 30.07.1998"></input>
                                     </td>
                                 </tr>
 

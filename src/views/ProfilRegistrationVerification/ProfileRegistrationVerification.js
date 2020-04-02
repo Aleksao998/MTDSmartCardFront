@@ -34,8 +34,8 @@ const ProfileRegistrationVerification = (props) => {
     const renderComponent=()=>{
         switch (verified) {
             case 0:  return <LoadingPage/>;
-            case 1:  return <RegistrationPage id={id} useForceUpdate={useForceUpdate}/>;
-            case 2:  return <ProfilePage/> ;
+            case 1:  return <RegistrationPage id={id} useForceUpdate={useForceUpdate} setLocalStorage={props.setLocalStorage}/>;
+            case 2:  return <ProfilePage id={id} token={props.token} userId={props.userId}/> ;
             default: return null;
           }
         }

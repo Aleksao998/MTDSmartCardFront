@@ -19,9 +19,9 @@ const MainSection = (props) => (
             </div>
             <div className="name">
                 <h4 className="title">
-                    {props.firstName} {props.lastName}
+                    {props.state.firstName} {props.state.lastName}
                 </h4>
-                <h6 className="description">- Company name, job title -</h6>
+                <h6 className="description"> {props.state.companyName}   {props.state.jobTitle} </h6>
             </div>
         </div>
         <Row>

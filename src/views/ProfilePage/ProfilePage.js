@@ -11,20 +11,25 @@ import DemoFooter from "components/Footers/DemoFooter.js";
 
 //Sections
 import MainSection from "./MainSection/MainSection";
+import MainSectionEdit from "./MainSectionEdit/MainSectionEdit";
 import ContactSection from "./ContactSection/ContactSection";
 import ContactSectionEdit from "./ContactSectionEdit/ContactSectionEdit";
 
 
-function ProfilePage() {
+
+function ProfilePage(props) {
   const linkRef = React.createRef();
   //ReactState
   const [ScreenSize, setScreenSize] = useState(1);
   const [EditMode, setEditMode] = useState(0);
   const [ButtonText, setButtonText] = useState("Edit profile");
   const [ButtonIcon, setButtonIcon] = useState("fa fa-edit");
-  const [firstName, setFirstName]= useState("");
-  const [lastName, setLastName]= useState("");
+  const [isAuth, setisAuth]= useState(false);
   const [state, setState] = useState({
+    firstName:"",
+    lastName:"",
+    companyName:"",
+    jobTitle:"",
     mobileNumber:"",
     homeNumber:"",
     email:"",
@@ -41,6 +46,10 @@ function ProfilePage() {
 
   });
   const [newState, setNewState] = useState({
+    firstName:"",
+    lastName:"",
+    companyName:"",
+    jobTitle:"",
     mobileNumber:"",
     homeNumber:"",
     email:"",
@@ -57,6 +66,7 @@ function ProfilePage() {
   });
 
   const handleOnChange = event => {
+  
       const { name, value } = event.target;
       setNewState({...newState,[name]: value });
   };
@@ -64,8 +74,8 @@ function ProfilePage() {
   const downloadContact=()=>{
    
     const Url=`http://localhost:3003/profile/createVCF?
-                                                          firstName=${firstName}&
-                                                          lastName=${lastName}&
+                                                          firstName=${state.firstName}&
+                                                          lastName=${state.lastName}&
                                                           organization=MTD&
                                                           jobTitle=software engineer&
                                                           homePhone=${state.homeNumber}&
@@ -102,10 +112,14 @@ function ProfilePage() {
   }
 
   document.documentElement.classList.remove("nav-open");
-
+  React.useEffect(()=> {
+    if(props.userId == props.id){
+      setisAuth(true);
+    }
+  },[])
 
   React.useEffect(() => {
-    fetch("http://localhost:3003/profile/profileData")
+    fetch("http://localhost:3003/profile/profileData/"+props.id)
     .then(res => {
       if(res.status !== 200){
         throw new Error("Failed to fetch posts.");
@@ -113,15 +127,45 @@ function ProfilePage() {
       return res.json();
     })
     .then(resData => {
-      setFirstName(resData.profile[0].firstName);
-      setLastName(resData.profile[0].lastName);
+      console.log(resData.profileData.profileData.firstName);
+      setState({...state,
+        "firstName": resData.profileData.profileData.firstName,
+        "lastName": resData.profileData.profileData.lastName,
+        "mobileNumber": resData.profileData.profileData.contactInfo.mobilePhone,
+        "homeNumber": resData.profileData.profileData.contactInfo.homePhone,
+        "email":resData.profileData.profileData.contactInfo.email,
+        "workEmail":resData.profileData.profileData.contactInfo.workEmail, 
+        "twitter": resData.profileData.profileData.socialNetwork.twitter,
+        "linkedin": resData.profileData.profileData.socialNetwork.linkedin,
+        "facebook":resData.profileData.profileData.socialNetwork.facebook,
+        "snapchat":resData.profileData.profileData.socialNetwork.snapchat, 
+        "youtube": resData.profileData.profileData.socialNetwork.youtube,
+        "whatsapp": resData.profileData.profileData.directMessage.whatsapp,
+        "viber":resData.profileData.profileData.directMessage.viber,
+        "address":resData.profileData.profileData.personalInfo.address, 
+        "birthday":resData.profileData.profileData.personalInfo.birthday
+    });
+    setNewState({...newState,
+      "firstName": resData.profileData.profileData.firstName,
+      "lastName": resData.profileData.profileData.lastName,
+      "mobileNumber": resData.profileData.profileData.contactInfo.mobilePhone,
+      "homeNumber": resData.profileData.profileData.contactInfo.homePhone,
+      "email":resData.profileData.profileData.contactInfo.email,
+      "workEmail":resData.profileData.profileData.contactInfo.workEmail, 
+      "twitter": resData.profileData.profileData.socialNetwork.twitter,
+      "linkedin": resData.profileData.profileData.socialNetwork.linkedin,
+      "facebook":resData.profileData.profileData.socialNetwork.facebook,
+      "snapchat":resData.profileData.profileData.socialNetwork.snapchat, 
+      "youtube": resData.profileData.profileData.socialNetwork.youtube,
+      "whatsapp": resData.profileData.profileData.directMessage.whatsapp,
+      "viber":resData.profileData.profileData.directMessage.viber,
+      "address":resData.profileData.profileData.personalInfo.address, 
+      "birthday":resData.profileData.profileData.personalInfo.birthday
+    });
     })
     .catch(err =>{
       console.log(err);
     });
-
-
-
     if(window.innerWidth <= 760){
       setScreenSize(0);
     }
@@ -132,7 +176,10 @@ function ProfilePage() {
     return function cleanup() {
       document.body.classList.remove("landing-page");
     };
-  },[firstName,lastName,ScreenSize]);
+
+  },[ScreenSize]);
+
+
 
   const editProfile = () =>{
     if(ButtonText === "Edit profile"){
@@ -141,8 +188,45 @@ function ProfilePage() {
       setEditMode(1);
     }
     else{
-      console.log(newState);
+      fetch("http://localhost:3003/profile/updateProfile/",{
+        method:"POST",
+        headers:{
+          Authorization: "Bearer " + props.token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName:newState.firstName,
+          lastName:newState.lastName,
+          companyName:newState.companyName,
+          jobTitle:newState.jobTitle,
+          mobileNumber: newState.mobileNumber,
+          homeNumber: newState.homeNumber,
+          email:newState.email,
+          workEmail:newState.workEmail,
+          twitter:newState.twitter,
+          linkedin:newState.linkedin,
+          facebook:newState.facebook,
+          snapchat:newState.snapchat,
+          youtube:newState.youtube,
+          whatsapp:newState.whatsapp,
+          viber:newState.viber,
+          address:newState.address,
+          birthday:newState.birthday
+        })
+
+      })
+      .then(res=>{
+        
+      }).catch(err => {
+        console.log(err);
+      })
+
+
       setState({...state,
+                          "firstName":newState.firstName,
+                          "lastName":newState.lastName,
+                          "companyName":newState.companyName,
+                          "jobTitle":newState.jobTitle,
                           "mobileNumber": newState.mobileNumber,
                           "homeNumber": newState.homeNumber,
                           "email":newState.email,
@@ -169,15 +253,21 @@ function ProfilePage() {
       <ProfilePageHeader />
       <a ref={linkRef}/>
       <div className="section profile-content">
-        <div className="EditButtonSection">
-        <Button className="btn-round btnEditSave" color="default" onClick={editProfile}>
-                <i className={ButtonIcon}/>{ScreenSize ? ButtonText : null} 
-            </Button>
-            
-        </div>
+      {
+        isAuth?
+                  <div className="EditButtonSection">
+                    <Button className="btn-round btnEditSave" color="default" onClick={editProfile}>
+                      <i className={ButtonIcon}/>{ScreenSize ? ButtonText : null} 
+                    </Button> 
+                  </div>
+                  :
+                  null
+      }
+        
         <div className="container noPaddingProfilePage">
-          <MainSection firstName={firstName} lastName={lastName} downloadContact={downloadContact}/>
-          {EditMode ?  <ContactSectionEdit handleOnChange={handleOnChange}/> : <ContactSection state={state}/>}
+          {EditMode ?   <MainSectionEdit state={newState} handleOnChange={handleOnChange}/>:  <MainSection state={state} downloadContact={downloadContact}/>}
+         
+          {EditMode ?  <ContactSectionEdit state={newState} handleOnChange={handleOnChange}/> : <ContactSection state={state}/>}
           
          
         

@@ -19,7 +19,20 @@ const AppRoutes = (props) =>{
       logoutHandler();
     }, milliseconds);
   };
-  
+  const setLocalStorage = (token, userId) => {
+    console.log("registerHandler");
+    localStorage.setItem('token', token);
+    localStorage.setItem('userId', userId);
+    const remainingMilliseconds = 60 * 60 * 1000;
+    const expiryDate = new Date(
+      new Date().getTime() + remainingMilliseconds
+    );
+    setToken(token);
+    setAuth(true);
+    setUserId(userId);
+    setAutoLogout(remainingMilliseconds);
+    localStorage.setItem('expiryDate', expiryDate.toISOString());
+  }
   const logoutHandler = () => {
     console.log("logout");
     setToken(null);
@@ -47,18 +60,7 @@ const AppRoutes = (props) =>{
        return res.json();
     })
     .then(resData=>{
-      localStorage.setItem('token', resData.token);
-      localStorage.setItem('userId', resData.userId);
-      const remainingMilliseconds = 60 * 60 * 1000;
-      const expiryDate = new Date(
-        new Date().getTime() + remainingMilliseconds
-      );
-      console.log("usao");
-      setToken(resData.token);
-      setAuth(true);
-      setUserId(resData.userId);
-      setAutoLogout(remainingMilliseconds);
-      localStorage.setItem('expiryDate', expiryDate.toISOString());
+      setLocalStorage(resData.token,resData.userId);
       const url = "/profile-page/"+resData.userId;
       props.history.replace(url);
     })
@@ -75,7 +77,7 @@ const AppRoutes = (props) =>{
 
         <Route
           path="/profile-page/:id"
-          render={props => <ProfileRegistrationVerification {...props} />}
+          render={props => <ProfileRegistrationVerification {...props} token={token} userId={userId}  setLocalStorage={setLocalStorage}/>}
         />
 
         <Route

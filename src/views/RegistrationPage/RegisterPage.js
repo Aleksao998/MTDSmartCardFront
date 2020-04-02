@@ -26,9 +26,6 @@ function RegisterPage(props) {
   const handleCheck = () =>{
     setCheck(!check);
   }
-  const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
-  }
 
   const createNewProfile = (event) =>{
     event.preventDefault();
@@ -86,9 +83,15 @@ function RegisterPage(props) {
         })
      })
     .then(res => {
+      
       if (res.status !== 200 && res.status !== 201) {
         throw new Error('Creating or editing a post failed!');
       }
+      return res.json();
+     
+    })
+    .then(resData=>{
+      props.setLocalStorage(resData.token, resData.userId);
       props.useForceUpdate();
     })
     .catch(err => {
