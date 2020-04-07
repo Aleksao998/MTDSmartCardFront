@@ -7,9 +7,11 @@ import { Button, Card, Form, Container, Row, Col } from "reactstrap";
 
 
 function LoginPage(props) {
+ 
   const [state, setState] = useState({
     email:"",
     password:"",
+    
   });
 
   const handleOnChange = (event) => {
@@ -32,37 +34,61 @@ function LoginPage(props) {
   });
   return (
     <div>
-  
+
       <div
         className="page-header"
         style={{
-          backgroundImage: "url(" + require("assets/img/login-image.jpg") + ")"
+          
         }}
       >
-        <div className="filter" />
-        <Container>
-          <Row>
-            <Col className="ml-auto mr-auto" lg="6">
-              <Card className="card-register ml-auto mr-auto">
-                <h3 className="title mx-auto">Welcome Again</h3>
-                
-                <Form className="register-form">
-                  
-                  <div class="form-group">
-                      <input type="email" class="form-input" name="email" id="email" onChange={handleOnChange}  placeholder="Your Email"/>
+        <div className="container login">
+          <div class="card-5">
+            <h3 className="titleRegistration">Welcome again</h3>
+            <br/>
+            <Form className="register-form">
+            {
+              props.error ? 
+                    <div> {props.error} </div>
+                    :
+                    null
+            }
+              <div class="row m-b-55-20">
+                  <div className="col-md-3" >
+                    <div class="form-name">Email</div>
                   </div>
-                  <div class="form-group">
-                      <input type="text" class="form-input" name="password" id="password" onChange={handleOnChange}  placeholder="Password"/>
-                      <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                  <div className="col-md-9">
+                    <div class="form-value">
+                        <div class="input-group">
+                        <input type="email" class="input--style-5" name="email" id="email" onChange={handleOnChange}  placeholder="Your Email"/>
+                        </div>
+                    </div>
                   </div>
-                  <Button block className="form-submit"  onClick={(event) => {props.login(event,state.email,state.password)}} color="danger">
-                    Login
-                  </Button>
-                </Form>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
+              </div>   
+
+              <div class="row m-b-55-20">
+              <div className="col-md-3" >
+                <div class="form-name">Password</div>
+              </div>
+              <div className="col-md-9">
+                <div class="form-value">
+                    <div class="input-group">
+                    <input type="password" class="input--style-5" name="password" id="password" onChange={handleOnChange}  placeholder="Password"/>
+                   
+                    </div>
+                </div>
+              </div>
+          </div>  
+
+            <div class="row m-b-10">
+            <Button block className="form-submit"  onClick={(event) => {props.login(event,state.email,state.password)}} color="danger">
+            Login
+          </Button>
+            </div>
+            </Form>
+            
+          </div>  
+          
+        </div>
         <div className="footer register-footer text-center">
           <h6 style={{marginBottom:"0px"}}>
             © {new Date().getFullYear()}, made with{" "}

@@ -24,7 +24,7 @@ function ProfilePage(props) {
   const [EditMode, setEditMode] = useState(0);
   const [ButtonText, setButtonText] = useState("Edit profile");
   const [ButtonIcon, setButtonIcon] = useState("fa fa-edit");
-  const [isAuth, setisAuth]= useState(false);
+  const [isAuthenticated, setisAuthenticated]= useState(true);
   const [state, setState] = useState({
     firstName:"",
     lastName:"",
@@ -114,7 +114,7 @@ function ProfilePage(props) {
   document.documentElement.classList.remove("nav-open");
   React.useEffect(()=> {
     if(props.userId == props.id){
-      setisAuth(true);
+      setisAuthenticated(true);
     }
   },[])
 
@@ -131,6 +131,8 @@ function ProfilePage(props) {
       setState({...state,
         "firstName": resData.profileData.profileData.firstName,
         "lastName": resData.profileData.profileData.lastName,
+        "companyName": resData.profileData.profileData.companyName,
+        "jobTitle": resData.profileData.profileData.jobTitle,
         "mobileNumber": resData.profileData.profileData.contactInfo.mobilePhone,
         "homeNumber": resData.profileData.profileData.contactInfo.homePhone,
         "email":resData.profileData.profileData.contactInfo.email,
@@ -148,6 +150,8 @@ function ProfilePage(props) {
     setNewState({...newState,
       "firstName": resData.profileData.profileData.firstName,
       "lastName": resData.profileData.profileData.lastName,
+      "companyName": resData.profileData.profileData.companyName,
+      "jobTitle": resData.profileData.profileData.jobTitle,
       "mobileNumber": resData.profileData.profileData.contactInfo.mobilePhone,
       "homeNumber": resData.profileData.profileData.contactInfo.homePhone,
       "email":resData.profileData.profileData.contactInfo.email,
@@ -254,7 +258,7 @@ function ProfilePage(props) {
       <a ref={linkRef}/>
       <div className="section profile-content">
       {
-        isAuth?
+        isAuthenticated?
                   <div className="EditButtonSection">
                     <Button className="btn-round btnEditSave" color="default" onClick={editProfile}>
                       <i className={ButtonIcon}/>{ScreenSize ? ButtonText : null} 

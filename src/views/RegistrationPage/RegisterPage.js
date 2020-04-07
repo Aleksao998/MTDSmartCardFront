@@ -1,6 +1,6 @@
 
 import React, { useState,useEffect } from 'react';
-
+import validator from 'validator';
 // reactstrap components
 import { Button, Card, Form, Container, Row, Col } from "reactstrap";
 
@@ -29,43 +29,49 @@ function RegisterPage(props) {
 
   const createNewProfile = (event) =>{
     event.preventDefault();
-    console.log(state.email,state.firstName,state.lastName,state.password,state.repassword, check);
+
+    //Check if all fields are filed
+    if(state.email==="" || state.password==="" || state.firstName==="" || state.lastName==="" || state.repassword===""){
+      setError("All field must be filed!");
+      return;
+    }
+    //Check for valid email format
+    if(validator.isEmail(state.email)!==true){
+      setError("Email is not valid format!");
+      return;
+    }
+
+    //simple password validate
+    state.password=state.password.trim();
+    var mediumRegexPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+  
+    if(mediumRegexPassword.test(state.password)!==true) {
+      setError("Password must contain min 8 caracters, 1 lower letter, 1 upper letter, 1 number!");
+      return;
+    }
+    //Check if password match
+    if(state.password !== state.repassword){
+      setError("Password does not match!");
+      return;
+    }
+
+    //if check button is checked
+    if(check !== true){
+      setError("Need to check checkbox!");
+      return;
+    }
+
+
     //Check if email already exist
     fetch("http://localhost:3003/profile/checkEmail?email="+state.email,)
     .then(res => {
-      console.log("status: "+res.status);
+      console.log("asdadasdasd");
+      console.log(res);
       if (res.status !== 200) {
-        console.log("Email already exist!");
-        setError("Email already exist!");
-        return;
+        throw new Error('Email already exists!');
       }
 
-        //Check if all fields are filed
-        if(state.email==="" || state.password==="" || state.firstName==="" || state.lastName==="" || state.repassword===""){
-    
-        console.log("All field must be filed!");
-        setError("All field must be filed!");
-        return;
-      }
 
-      
-      //Check if password match
-      if(state.password !== state.repassword){
-        setError("Password does not match!");
-        return;
-      }
-
-        //Check if password match
-      if(state.password !== state.repassword){
-        setError("Password does not match!");
-        return;
-      }
-
-      //if check button is checked
-      if(check !== true){
-        setError("Need to check checkbox!");
-        return;
-      }
 
       return fetch("http://localhost:3003/auth/signup",{
         method: "PUT",
@@ -84,7 +90,7 @@ function RegisterPage(props) {
      })
     .then(res => {
       
-      if (res.status !== 200 && res.status !== 201) {
+      if (res.status !== 200) {
         throw new Error('Creating or editing a post failed!');
       }
       return res.json();
@@ -95,7 +101,8 @@ function RegisterPage(props) {
       props.useForceUpdate();
     })
     .catch(err => {
-      console.log(err);
+      if(err.message === "Failed to fetch") err.message='Techical problems with server, please trt later!';
+      setError(err.message);
     });
   }
 
@@ -111,61 +118,110 @@ function RegisterPage(props) {
       <div
         className="page-header"
         style={{
-          backgroundImage: "url(" + require("assets/img/login-image.jpg") + ")"
+          
         }}
       >
-        <div className="filter" />
-        <Container>
-          <Row>
-            <Col className="ml-auto mr-auto" lg="6">
-              <Card className="card-register ml-auto mr-auto">
-                <h3 className="title mx-auto">Welcome</h3>
+        <div className="container registration">
+          <div class="card-5">
+            <h3 className="titleRegistration">Welcome</h3>
+            <br/>
+            <Form className="register-form">
+            {
+              error ? 
+                    <div> {error} </div>
+                    :
+                    null
+            }
+            <div class="row m-b-55-20">
+                <div className="col-md-3" >
+                            <div class="form-name">Name</div>
+                </div>
                 
-                <Form className="register-form">
-                  {
-                    error ? 
-                          <div> {error} </div>
-                          :
-                          null
-                  }
-                  <div class="form-group">
-                    <input type="text" class="form-input" name="firstName" id="firstName" onChange={handleOnChange}  placeholder="Your firstName"/>
-                    
+                <div className="col-md-9">
+                  <div class="form-value">
+                    <div class="row row-space">
+                        <div class="col-md-6">
+                            <div class="input-group-desc">
+                                <input class="input--style-5" type="text" name="firstName" onChange={handleOnChange}/>
+                                <label class="label--desc">first name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group-desc">
+                                <input class="input--style-5" type="text" name="lastName"onChange={handleOnChange}/>
+                                <label class="label--desc">last name</label>
+                            </div>
+                        </div>
+                    </div>
                   </div>
+                </div>
+              </div>
 
-                  <div class="form-group">
-                   <input type="text" class="form-input" name="lastName" id="lastName" onChange={handleOnChange}  placeholder="Your lastName"/>
+              <div class="row m-b-55-20">
+                  <div className="col-md-3" >
+                    <div class="form-name">Email</div>
                   </div>
+                  <div className="col-md-9">
+                    <div class="form-value">
+                        <div class="input-group">
+                            <input class="input--style-5" type="email" name="email" onChange={handleOnChange}/>
+                        </div>
+                    </div>
+                  </div>
+              </div>   
 
-                  <div class="form-group">
-                      <input type="email" class="form-input" name="email" id="email" onChange={handleOnChange}  placeholder="Your Email"/>
+              
+              
+             
+
+         
+
+
+            <div class="row m-b-55-20">
+            <div className="col-md-3" >
+                        <div class="form-name">Password</div>
+            </div>
+
+
+            <div className="col-md-9">
+              <div class="form-value">
+                <div class="row row-space">
+                  <div class="col-md-6">
+                      <div class="input-group-desc">
+                          <input class="input--style-5" type="password" name="password" onChange={handleOnChange}/>
+                          <label class="label--desc">password</label>
+                      </div>
                   </div>
-                  <div class="form-group">
-                      <input type="password" class="form-input" name="password" id="password" onChange={handleOnChange}  placeholder="Password"/>
-                      <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                  <div class="col-md-6">
+                    <div class="input-group-desc">
+                        <input class="input--style-5" type="password" name="repassword"onChange={handleOnChange}/>
+                        <label class="label--desc">repeat password</label>
+                    </div>
                   </div>
-                  <div class="form-group">
-                      <input type="password" class="form-input" name="repassword" id="repassword" onChange={handleOnChange}  placeholder="Repeat your password"/>
-                  </div>
-                  <div class="form-group">
-                      <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" onChange={handleCheck} />
-                      <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="/#" class="term-service">Terms of service</a></label>
-                  </div>
-                  <Button block className="form-submit" color="danger"   onClick={createNewProfile}>
+                </div>
+                </div>
+              </div>
+            </div>
+            <br/>
+            
+            <div class="row m-b-55-20">
+              <div className="col-3">
+            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" onChange={handleCheck} />
+            </div>
+            <div className="col-9">
+            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="/#" class="term-service">Terms of service</a></label>
+            </div>
+            </div>  
+
+            <div class="row m-b-10">
+            <Button block className="form-submit" color="danger"   onClick={createNewProfile}>
                     Create account
-                  </Button>
-                </Form>
-                
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-        <br/>
-        <div className="footer register-footer text-center ">
-          <h6 style={{marginBottom:"0px"}}>
-            © {new Date().getFullYear()}, made with{" "}
-              <i className="fa fa-heart heart" /> by Modern Technology Development
-          </h6>
+              </Button>
+            </div>
+            </Form>
+            
+          </div>  
+          
         </div>
       </div>
     </>

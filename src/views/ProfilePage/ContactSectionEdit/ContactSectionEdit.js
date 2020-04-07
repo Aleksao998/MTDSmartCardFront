@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
+
 // reactstrap components
 
 function ContactEditSection(props){
-   
+    const [popoverOpen, setPopoverOpen] = useState(false);
+
+    const toggle = () => setPopoverOpen(!popoverOpen);
     return(
         <div class="service_area">
             <div class="container-fluid">
@@ -24,7 +27,9 @@ function ContactEditSection(props){
                                     </td>
                                     <td style={{columnSpan:"2!important", textAlign:"left", paddingLeft:"5px"}}>
                                         <p className="contactIconTitle">Mobile phone:</p>
-                                        <input name="mobileNumber" type="tel" value={props.state.mobileNumber} onChange={props.handleOnChange} ></input>
+                                        <div>
+                                            <input name="mobileNumber" type="tel" value={props.state.mobileNumber} onChange={props.handleOnChange} ></input>
+                                        </div>
                                     </td>
                                 </tr>
                                 <br></br>
