@@ -8,7 +8,8 @@
 @import "../views/ProfilePage/ContactSection/contactSection";
 @import "../views/LoadingPage/loadingPage";
 @import "../views/ProfilePage/ProfilePage.scss";
-$fa-font-path : "~@fortawesome/fontawesome-free-webfonts/webfonts";
+@import "../views/ProfilRegistrationVerification/FillDataForm/fillDataForm";
+$fa-font-path: "~@fortawesome/fontawesome-free-webfonts/webfonts";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
