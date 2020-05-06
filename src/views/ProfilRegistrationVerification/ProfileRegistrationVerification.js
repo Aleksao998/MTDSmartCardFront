@@ -10,15 +10,14 @@ const ProfileRegistrationVerification = (props) => {
   const [id] = useState(props.match.params.id);
 
   const useForceUpdate = () => {
-    console.log("useForceUpdate");
     setVerified(4);
   };
   useEffect(() => {
-    console.log(id);
+    console.log("___________________");
+    console.log(props.location.search);
     const url = "http://localhost:3003/profile/findProfileById/" + id;
     fetch(url)
       .then((res) => {
-        console.log(res.status);
         if (res.status === 200) {
           setVerified(2);
           return;
@@ -49,7 +48,15 @@ const ProfileRegistrationVerification = (props) => {
         );
       case 2:
         return (
-          <ProfilePage id={id} token={props.token} userId={props.userId} />
+          <ProfilePage
+            setEditProfileFromMenu={props.setEditProfileFromMenu}
+            editProfileFromMenu={props.editProfileFromMenu}
+            id={id}
+            token={props.token}
+            userId={props.userId}
+            location={props.location}
+            history={props.history}
+          />
         );
       case 3:
         return <ErrorPage500 />;

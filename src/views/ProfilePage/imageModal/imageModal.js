@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import AvatarEditor from "react-avatar-editor";
-import { Button, Container, Row, Col } from "reactstrap";
+import { Button } from "reactstrap";
 const axios = require("axios");
 var FormData = require("form-data");
 //Modal Setting
@@ -21,22 +21,16 @@ const customStylesAvatar = {};
 Modal.setAppElement(document.getElementById("root"));
 
 const ImageModal = (props) => {
-  const [preview, setPreview] = React.useState(null);
   const [image, setImage] = React.useState(null);
   const [editor, setEditor] = React.useState(null);
-  console.log(preview);
-  const onClose = () => {
-    setPreview(null);
-  };
 
-  const onCrop = (preview) => {
-    setPreview(preview);
-  };
   const saveImage = () => {
     const canvas2 = editor.getImageScaledToCanvas().toDataURL();
+    const imageName = "profile-" + props.id + ".png";
     var bodyFormData = new FormData();
     bodyFormData.append("myImage", canvas2);
-    bodyFormData.append("image-name", canvas2);
+    bodyFormData.append("imageName", imageName);
+    bodyFormData.append("id", props.id);
     const config = {
       headers: {
         "content-type": "multipart/form-data",
@@ -45,16 +39,15 @@ const ImageModal = (props) => {
     axios
       .post("http://localhost:3003/profile/uploadImage", bodyFormData, config)
       .then((response) => {
-        alert("The file is successfully uploaded");
+        props.setImageUrl(canvas2);
+        props.closeModal();
       })
       .catch((error) => {});
   };
   const onChange = (e) => {
     setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
   };
   const setEditorRef = (editor) => setEditor(editor);
-  const onBeforeFileLoad = (elem) => {};
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -64,15 +57,15 @@ const ImageModal = (props) => {
       contentLabel="Example Modal"
     >
       <p className="modalImageTitle">Import your image</p>
-      <div class="custom-file">
+      <div className="custom-file">
         <input
           type="file"
           name="myImage"
-          class="custom-file-input"
+          className="custom-file-input"
           id="customFile"
           onChange={onChange}
         />
-        <label class="custom-file-label" for="customFile">
+        <label className="custom-file-label" htmlFor="customFile">
           Choose file
         </label>
       </div>
@@ -99,7 +92,6 @@ const ImageModal = (props) => {
           style={{ marginRight: "5px", width: "80px" }}
           className="btn-round"
           color="danger"
-          href="#pablo"
           onClick={props.closeModal}
         >
           close
@@ -108,7 +100,6 @@ const ImageModal = (props) => {
           style={{ width: "80px" }}
           className="btn-round"
           color="success"
-          href="#pablo"
           onClick={saveImage}
         >
           Save

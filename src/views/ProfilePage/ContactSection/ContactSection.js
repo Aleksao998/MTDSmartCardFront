@@ -2,12 +2,12 @@ import React from "react";
 // reactstrap components
 
 const ContactSection = (props) => (
-  <div class="service_area">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xl-4 col-md-4">
+  <div className="service_area">
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-xl-4 col-md-4">
           <div
-            class="single_service text-center wow fadeInLeft"
+            className="single_service text-center wow fadeInLeft"
             data-wow-duration="1.2s"
             data-wow-delay=".4s"
           >
@@ -19,12 +19,18 @@ const ContactSection = (props) => (
                 {props.state.mobileNumber ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fas fa-mobile"></i>
+                          <a
+                            href={"tel:+" + props.state.mobileNumber}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fas fa-mobile"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -33,26 +39,31 @@ const ContactSection = (props) => (
                       >
                         <p className="contactIconTitle">Mobile phone:</p>
                         <a
-                          href="tel:0621204030"
+                          href={"tel:+" + props.state.mobileNumber}
                           style={{ fontWeight: "500", color: "black" }}
                         >
                           +381{props.state.mobileNumber}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.homeNumber ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fas fa-phone"></i>
+                          <a
+                            href={"tel:+" + props.state.mobileNumber}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fas fa-phone"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -61,26 +72,31 @@ const ContactSection = (props) => (
                       >
                         <p className="contactIconTitle">Home phone:</p>
                         <a
-                          href="tel:+381113808624"
+                          href={"tel:+" + props.state.homeNumber}
                           style={{ fontWeight: "500", color: "black" }}
                         >
                           +381{props.state.homeNumber}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.email ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fas fa-envelope"></i>
+                          <a
+                            href={"mailto:" + props.state.email}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fas fa-envelope"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -88,24 +104,32 @@ const ContactSection = (props) => (
                         }}
                       >
                         <p className="contactIconTitle">Email</p>
-                        <a style={{ fontWeight: "500", color: "black" }}>
+                        <a
+                          href={"mailto:" + props.state.email}
+                          style={{ fontWeight: "500", color: "black" }}
+                        >
                           {props.state.email}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.workEmail ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fas fa-envelope-open"></i>
+                          <a
+                            href={"mailto:" + props.state.workEmail}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fas fa-envelope-open"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -113,7 +137,10 @@ const ContactSection = (props) => (
                         }}
                       >
                         <p className="contactIconTitle">Work Email</p>
-                        <a style={{ fontWeight: "500", color: "black" }}>
+                        <a
+                          href={"mailto:" + props.state.workEmail}
+                          style={{ fontWeight: "500", color: "black" }}
+                        >
                           {props.state.workEmail}
                         </a>
                       </td>
@@ -125,12 +152,12 @@ const ContactSection = (props) => (
           </div>
         </div>
 
-        <div class="col-xl-4 col-md-4">
+        <div className="col-xl-4 col-md-4">
           <div
-            class="single_service text-center wow fadeInUp"
+            className="single_service text-center wow fadeInUp"
             data-wow-duration="1s"
             data-wow-delay=".3s"
-            style={{ height: "550px" }}
+            style={{ height: "600px" }}
           >
             <div className="center">
               <h3 className="contactTitle">Social Network</h3>
@@ -140,12 +167,18 @@ const ContactSection = (props) => (
                 {props.state.twitter ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fab fa-twitter"></i>
+                          <a
+                            href={props.state.twitter[1]}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fab fa-twitter"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -154,26 +187,31 @@ const ContactSection = (props) => (
                       >
                         <p className="contactIconTitle">Twitter:</p>
                         <a
-                          href=""
+                          href={props.state.twitter[1]}
                           style={{ fontWeight: "500", color: "black" }}
                         >
-                          {props.state.twitter}
+                          {props.state.twitter[0]}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.linkedin ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fab fa-linkedin-in"></i>
+                          <a
+                            href={props.state.linkedin[1]}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fab fa-linkedin-in"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -182,25 +220,30 @@ const ContactSection = (props) => (
                       >
                         <p className="contactIconTitle">LinkedIn:</p>
                         <a
-                          href="tel:+381113808624"
+                          href={props.state.linkedin[1]}
                           style={{ fontWeight: "500", color: "black" }}
                         >
-                          {props.state.linkedin}
+                          {props.state.linkedin[0]}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
                 {props.state.instagram ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fab fa-instagram"></i>
+                          <a
+                            href={props.state.instagram[1]}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fab fa-instagram"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -209,26 +252,31 @@ const ContactSection = (props) => (
                       >
                         <p className="contactIconTitle">Instagram:</p>
                         <a
-                          href="tel:+381113808624"
+                          href={props.state.instagram[1]}
                           style={{ fontWeight: "500", color: "black" }}
                         >
-                          {props.state.instagram}
+                          {props.state.instagram[0]}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.facebook ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fab fa-facebook-f"></i>
+                          <a
+                            href={props.state.facebook[1]}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fab fa-facebook-f"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "3!important",
                           textAlign: "left",
@@ -236,24 +284,32 @@ const ContactSection = (props) => (
                         }}
                       >
                         <p className="contactIconTitle">Facebook</p>
-                        <a style={{ fontWeight: "500", color: "black" }}>
-                          {props.state.facebook}
+                        <a
+                          href={props.state.facebook[1]}
+                          style={{ fontWeight: "500", color: "black" }}
+                        >
+                          {props.state.facebook[0]}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.snapchat ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fab fa-snapchat-ghost"></i>
+                          <a
+                            href={props.state.snapchat[1]}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fab fa-snapchat-ghost"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -261,24 +317,32 @@ const ContactSection = (props) => (
                         }}
                       >
                         <p className="contactIconTitle">Snapchat</p>
-                        <a style={{ fontWeight: "500", color: "black" }}>
-                          {props.state.snapchat}
+                        <a
+                          href={props.state.snapchat[1]}
+                          style={{ fontWeight: "500", color: "black" }}
+                        >
+                          {props.state.snapchat[0]}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.youtube ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fab fa-youtube"></i>
+                          <a
+                            href={props.state.youtube[1]}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fab fa-youtube"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -286,8 +350,11 @@ const ContactSection = (props) => (
                         }}
                       >
                         <p className="contactIconTitle">Youtube</p>
-                        <a style={{ fontWeight: "500", color: "black" }}>
-                          {props.state.youtube}
+                        <a
+                          href={props.state.youtube[1]}
+                          style={{ fontWeight: "500", color: "black" }}
+                        >
+                          {props.state.youtube[0]}
                         </a>
                       </td>
                     </tr>
@@ -298,9 +365,9 @@ const ContactSection = (props) => (
           </div>
         </div>
 
-        <div class="col-xl-4 col-md-4">
+        <div className="col-xl-4 col-md-4">
           <div
-            class="single_service text-center wow fadeInRight"
+            className="single_service text-center wow fadeInRight"
             data-wow-duration="1.2s"
             data-wow-delay=".4s"
           >
@@ -314,12 +381,18 @@ const ContactSection = (props) => (
                 {props.state.whatsapp ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fab fa-whatsapp"></i>
+                          <a
+                            href={"tel:+" + props.state.whatsapp}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fab fa-whatsapp"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -328,26 +401,31 @@ const ContactSection = (props) => (
                       >
                         <p className="contactIconTitle">WhatsApp:</p>
                         <a
-                          href="tel:0621204030"
+                          href={"tel:+" + props.state.whatsapp}
                           style={{ fontWeight: "500", color: "black" }}
                         >
                           {props.state.whatsapp}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.viber ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fab fa-viber "></i>
+                          <a
+                            href={"tel:+" + props.state.viber}
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fab fa-viber "></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -356,25 +434,32 @@ const ContactSection = (props) => (
                       >
                         <p className="contactIconTitle">Viber:</p>
                         <a
-                          href="tel:+381113808624"
+                          href={"tel:+" + props.state.viber}
                           style={{ fontWeight: "500", color: "black" }}
                         >
                           {props.state.viber}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
                 {props.state.address ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fas fa-home"></i>
+                          <a
+                            href={
+                              "http://maps.google.com/?q=" + props.state.address
+                            }
+                            style={{ padding: "0" }}
+                          >
+                            <i className="fas fa-home"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",
@@ -382,24 +467,31 @@ const ContactSection = (props) => (
                         }}
                       >
                         <p className="contactIconTitle">Adress:</p>
-                        <a style={{ fontWeight: "500", color: "black" }}>
+                        <a
+                          href={
+                            "http://maps.google.com/?q=" + props.state.address
+                          }
+                          style={{ fontWeight: "500", color: "black" }}
+                        >
                           {props.state.address}
                         </a>
                       </td>
                     </tr>
-                    <br></br>
                   </>
                 ) : null}
 
                 {props.state.birthday ? (
                   <>
                     <tr className="contactRow">
-                      <td>
+                      <td className="tablePadding">
                         <div className="social-icons icon-circle list-unstyled list-inline">
-                          <i class="fas fa-birthday-cake"></i>
+                          <a style={{ padding: "0" }}>
+                            <i className="fas fa-birthday-cake"></i>
+                          </a>
                         </div>
                       </td>
                       <td
+                        className="tablePadding"
                         style={{
                           columnSpan: "2!important",
                           textAlign: "left",

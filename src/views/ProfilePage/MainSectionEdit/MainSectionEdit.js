@@ -1,12 +1,13 @@
 import React from "react";
-// reactstrap components
-import { Button, Row, Col } from "reactstrap";
+
 //modal
 import ImageModal from "../imageModal/imageModal";
 const MainSectionEdit = (props) => (
   <div>
     <div className="owner">
       <ImageModal
+        setImageUrl={props.setImageUrl}
+        id={props.id}
         modalIsOpen={props.modalIsOpen}
         afterOpenModal={props.afterOpenModal}
         closeModal={props.closeModal}
@@ -16,7 +17,7 @@ const MainSectionEdit = (props) => (
           <img
             alt="..."
             className="img-circle img-no-padding img-responsive"
-            src={require("assets/img/faces/joe-gardner-2.jpg")}
+            src={props.imageUrl}
           />
         </button>
       </div>

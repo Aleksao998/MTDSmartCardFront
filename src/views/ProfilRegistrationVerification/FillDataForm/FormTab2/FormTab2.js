@@ -14,12 +14,13 @@ const FormTab1 = (props) => {
           <table className="fillDataTableTab2A">
             <tbody>
               <tr>
-                <td>
+                <td className="tablePadding">
                   <div className="social-icons icon-circle list-unstyled list-inline">
-                    <i class="fab fa-twitter"></i>
+                    <i className="fab fa-twitter"></i>
                   </div>
                 </td>
                 <td
+                  className="tablePadding"
                   style={{
                     columnSpan: "2!important",
                     textAlign: "left",
@@ -36,14 +37,15 @@ const FormTab1 = (props) => {
                   ></input>
                 </td>
               </tr>
-              <br></br>
+
               <tr>
-                <td>
+                <td className="tablePadding">
                   <div className="social-icons icon-circle list-unstyled list-inline">
-                    <i class="fab fa-linkedin-in"></i>
+                    <i className="fab fa-linkedin-in"></i>
                   </div>
                 </td>
                 <td
+                  className="tablePadding"
                   style={{
                     columnSpan: "2!important",
                     textAlign: "left",
@@ -60,14 +62,15 @@ const FormTab1 = (props) => {
                   ></input>
                 </td>
               </tr>
-              <br></br>
+
               <tr>
-                <td>
+                <td className="tablePadding">
                   <div className="social-icons icon-circle list-unstyled list-inline">
-                    <i class="fab fa-facebook-f"></i>
+                    <i className="fab fa-facebook-f"></i>
                   </div>
                 </td>
                 <td
+                  className="tablePadding"
                   style={{
                     columnSpan: "2!important",
                     textAlign: "left",
@@ -91,12 +94,13 @@ const FormTab1 = (props) => {
           <table className="fillDataTableTab2B">
             <tbody>
               <tr>
-                <td>
+                <td className="tablePadding">
                   <div className="social-icons icon-circle list-unstyled list-inline">
-                    <i class="fab fa-snapchat-ghost"></i>
+                    <i className="fab fa-snapchat-ghost"></i>
                   </div>
                 </td>
                 <td
+                  className="tablePadding"
                   style={{
                     columnSpan: "2!important",
                     textAlign: "left",
@@ -113,14 +117,15 @@ const FormTab1 = (props) => {
                   ></input>
                 </td>
               </tr>
-              <br></br>
+
               <tr>
-                <td>
+                <td className="tablePadding">
                   <div className="social-icons icon-circle list-unstyled list-inline">
-                    <i class="fab fa-youtube"></i>
+                    <i className="fab fa-youtube"></i>
                   </div>
                 </td>
                 <td
+                  className="tablePadding"
                   style={{
                     columnSpan: "2!important",
                     textAlign: "left",
@@ -137,14 +142,15 @@ const FormTab1 = (props) => {
                   ></input>
                 </td>
               </tr>
-              <br></br>
+
               <tr>
-                <td>
+                <td className="tablePadding">
                   <div className="social-icons icon-circle list-unstyled list-inline">
-                    <i class="fab fa-instagram"></i>
+                    <i className="fab fa-instagram"></i>
                   </div>
                 </td>
                 <td
+                  className="tablePadding"
                   style={{
                     columnSpan: "2!important",
                     textAlign: "left",

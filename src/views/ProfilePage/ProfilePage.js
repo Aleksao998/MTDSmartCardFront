@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import queryString from "query-string";
 // reactstrap components
 import { Button } from "reactstrap";
 // core components
@@ -13,36 +13,22 @@ import MainSectionEdit from "./MainSectionEdit/MainSectionEdit";
 import ContactSection from "./ContactSection/ContactSection";
 import ContactSectionEdit from "./ContactSectionEdit/ContactSectionEdit";
 
+//Redux
+import { connect } from "react-redux";
+import { addProfileData } from "../../actions/userProfile";
+//localSTorage
+import { saveStore, loadStore } from "../../localStorage/localStorage";
 function ProfilePage(props) {
   const linkRef = React.createRef();
   //ReactState
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [ScreenSize, setScreenSize] = useState(1);
   const [EditMode, setEditMode] = useState(0);
   const [ButtonText, setButtonText] = useState("Edit profile");
   const [ButtonIcon, setButtonIcon] = useState("fa fa-edit");
-  const [isAuthenticated, setisAuthenticated] = useState(true);
+  const [isAuthenticated, setisAuthenticated] = useState(false);
+  const [imageUrl, setImageUrl] = useState();
   const [state, setState] = useState({
-    firstName: "",
-    lastName: "",
-    companyName: "",
-    jobTitle: "",
-    mobileNumber: "",
-    homeNumber: "",
-    email: "",
-    workEmail: "",
-    twitter: "",
-    linkedin: "",
-    facebook: "",
-    snapchat: "",
-    youtube: "",
-    instagram: "",
-    whatsapp: "",
-    viber: "",
-    address: "",
-    birthday: "",
-  });
-  const [newState, setNewState] = useState({
     firstName: "",
     lastName: "",
     companyName: "",
@@ -64,7 +50,6 @@ function ProfilePage(props) {
   });
 
   const openModal = () => {
-    console.log(modalIsOpen);
     setIsOpen(true);
   };
   const closeModal = () => {
@@ -73,7 +58,7 @@ function ProfilePage(props) {
   const afterOpenModal = () => {};
   const handleOnChange = (event) => {
     const { name, value } = event.target;
-    setNewState({ ...newState, [name]: value });
+    setState({ ...state, [name]: value });
   };
   const downloadContact = () => {
     const Url = `http://localhost:3003/profile/createVCF?
@@ -92,7 +77,7 @@ function ProfilePage(props) {
                                                           youtube=${state.youtube}&
                                                           instagram=${state.instagram}&
                                                           address=${state.address}`;
-    console.log(Url);
+
     fetch(Url, {
       method: "GET",
     })
@@ -116,77 +101,88 @@ function ProfilePage(props) {
   };
 
   document.documentElement.classList.remove("nav-open");
-  React.useEffect(() => {
-    if (props.userId == props.id) {
-      setisAuthenticated(true);
-    }
-  }, []);
 
   React.useEffect(() => {
-    fetch("http://localhost:3003/profile/profileData/" + props.id)
-      .then((res) => {
-        if (res.status !== 200) {
-          throw new Error("Failed to fetch posts.");
-        }
-        return res.json();
-      })
-      .then((resData) => {
-        console.log(resData.profileData.profileData.firstName);
-        setState({
-          ...state,
-          firstName: resData.profileData.profileData.firstName,
-          lastName: resData.profileData.profileData.lastName,
-          companyName: resData.profileData.profileData.companyName,
-          jobTitle: resData.profileData.profileData.jobTitle,
-          mobileNumber: resData.profileData.profileData.contactInfo.mobilePhone,
-          homeNumber: resData.profileData.profileData.contactInfo.homePhone,
-          email: resData.profileData.profileData.contactInfo.email,
-          workEmail: resData.profileData.profileData.contactInfo.workEmail,
-          twitter: resData.profileData.profileData.socialNetwork.twitter,
-          linkedin: resData.profileData.profileData.socialNetwork.linkedin,
-          facebook: resData.profileData.profileData.socialNetwork.facebook,
-          instagram: resData.profileData.profileData.socialNetwork.instagram,
-          snapchat: resData.profileData.profileData.socialNetwork.snapchat,
-          youtube: resData.profileData.profileData.socialNetwork.youtube,
-          whatsapp: resData.profileData.profileData.directMessage.whatsapp,
-          viber: resData.profileData.profileData.directMessage.viber,
-          address: resData.profileData.profileData.personalInfo.adress,
-          birthday: resData.profileData.profileData.personalInfo.birthday,
-        });
-        setNewState({
-          ...newState,
-          firstName: resData.profileData.profileData.firstName,
-          lastName: resData.profileData.profileData.lastName,
-          companyName: resData.profileData.profileData.companyName,
-          jobTitle: resData.profileData.profileData.jobTitle,
-          mobileNumber: resData.profileData.profileData.contactInfo.mobilePhone,
-          homeNumber: resData.profileData.profileData.contactInfo.homePhone,
-          email: resData.profileData.profileData.contactInfo.email,
-          workEmail: resData.profileData.profileData.contactInfo.workEmail,
-          twitter: resData.profileData.profileData.socialNetwork.twitter,
-          linkedin: resData.profileData.profileData.socialNetwork.linkedin,
-          facebook: resData.profileData.profileData.socialNetwork.facebook,
-          snapchat: resData.profileData.profileData.socialNetwork.snapchat,
-          youtube: resData.profileData.profileData.socialNetwork.youtube,
-          whatsapp: resData.profileData.profileData.directMessage.whatsapp,
-          viber: resData.profileData.profileData.directMessage.viber,
-          address: resData.profileData.profileData.personalInfo.adress,
-          birthday: resData.profileData.profileData.personalInfo.birthday,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    if (window.innerWidth <= 760) {
-      setScreenSize(0);
-    } else {
-      setScreenSize(1);
+    console.log("Use effect");
+    let params = queryString.parse(props.location.search);
+    if (params.edit === "true" || props.editProfileFromMenu === 1) {
+      setButtonText("Save");
+      setButtonIcon("fa fa-save");
+      setEditMode(1);
+    } else if (props.editProfileFromMenu === 0) {
+      setButtonText("Edit profile");
+      setButtonIcon("fa fa-edit");
+      setEditMode(0);
     }
-    document.body.classList.add("landing-page");
-    return function cleanup() {
-      document.body.classList.remove("landing-page");
-    };
-  }, [ScreenSize]);
+    if (props.userId === props.id) {
+      setisAuthenticated(true);
+    }
+    const store = loadStore();
+
+    if (typeof store !== "undefined") {
+      console.log("local");
+      setState({
+        ...state,
+        firstName: store.profileData.firstname,
+        lastName: store.profileData.lastName,
+        companyName: store.profileData.companyName,
+        jobTitle: store.profileData.jobTitle,
+        mobileNumber: store.contactInfo.mobilePhone,
+        homeNumber: store.contactInfo.homePhone,
+        email: store.contactInfo.email,
+        workEmail: store.contactInfo.workEmail,
+        twitter: store.socialNetwork.twitter,
+        linkedin: store.socialNetwork.linkedIn,
+        facebook: store.socialNetwork.facebook,
+        instagram: store.socialNetwork.instagram,
+        snapchat: store.socialNetwork.snapchat,
+        youtube: store.socialNetwork.youtube,
+        whatsapp: store.directMessages.whatsapp,
+        viber: store.directMessages.viber,
+        address: store.personalInfo.adress,
+        birthday: store.personalInfo.birthday,
+      });
+      setImageUrl(store.profileData.imageUrl);
+    } else {
+      console.log("fetch");
+      fetch("http://localhost:3003/profile/profileData/" + props.id)
+        .then((res) => {
+          if (res.status !== 200) {
+            throw new Error("Failed to fetch posts.");
+          }
+          return res.json();
+        })
+        .then((resData) => {
+          setImageUrl(resData.profileImage);
+
+          setState({
+            ...state,
+            firstName: resData.profileData.profileData.firstName,
+            lastName: resData.profileData.profileData.lastName,
+            companyName: resData.profileData.profileData.companyName,
+            jobTitle: resData.profileData.profileData.jobTitle,
+            mobileNumber:
+              resData.profileData.profileData.contactInfo.mobilePhone,
+            homeNumber: resData.profileData.profileData.contactInfo.homePhone,
+            email: resData.profileData.profileData.contactInfo.email,
+            workEmail: resData.profileData.profileData.contactInfo.workEmail,
+            twitter: resData.profileData.profileData.socialNetwork.twitter,
+            linkedin: resData.profileData.profileData.socialNetwork.linkedIn,
+            facebook: resData.profileData.profileData.socialNetwork.facebook,
+            instagram: resData.profileData.profileData.socialNetwork.instagram,
+            snapchat: resData.profileData.profileData.socialNetwork.snapchat,
+            youtube: resData.profileData.profileData.socialNetwork.youtube,
+            whatsapp: resData.profileData.profileData.directMessage.whatsapp,
+            viber: resData.profileData.profileData.directMessage.viber,
+            address: resData.profileData.profileData.personalInfo.adress,
+            birthday: resData.profileData.profileData.personalInfo.birthday,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [props.editProfileFromMenu]);
 
   const editProfile = () => {
     if (ButtonText === "Edit profile") {
@@ -194,6 +190,9 @@ function ProfilePage(props) {
       setButtonIcon("fa fa-save");
       setEditMode(1);
     } else {
+      props.history.push("/profile-page/" + props.id + "?edit=false");
+      props.setEditProfileFromMenu(0);
+
       fetch("http://localhost:3003/profile/updateProfile/", {
         method: "POST",
         headers: {
@@ -201,23 +200,23 @@ function ProfilePage(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstName: newState.firstName,
-          lastName: newState.lastName,
-          companyName: newState.companyName,
-          jobTitle: newState.jobTitle,
-          mobileNumber: newState.mobileNumber,
-          homeNumber: newState.homeNumber,
-          email: newState.email,
-          workEmail: newState.workEmail,
-          twitter: newState.twitter,
-          linkedin: newState.linkedin,
-          facebook: newState.facebook,
-          snapchat: newState.snapchat,
-          youtube: newState.youtube,
-          whatsapp: newState.whatsapp,
-          viber: newState.viber,
-          address: newState.address,
-          birthday: newState.birthday,
+          firstName: state.firstName,
+          lastName: state.lastName,
+          companyName: state.companyName,
+          jobTitle: state.jobTitle,
+          mobileNumber: state.mobileNumber,
+          homeNumber: state.homeNumber,
+          email: state.email,
+          workEmail: state.workEmail,
+          twitter: state.twitter,
+          linkedin: state.linkedin,
+          facebook: state.facebook,
+          snapchat: state.snapchat,
+          youtube: state.youtube,
+          whatsapp: state.whatsapp,
+          viber: state.viber,
+          address: state.address,
+          birthday: state.birthday,
         }),
       })
         .then((res) => {})
@@ -225,28 +224,30 @@ function ProfilePage(props) {
           console.log(err);
         });
 
-      setState({
-        ...state,
-        firstName: newState.firstName,
-        lastName: newState.lastName,
-        companyName: newState.companyName,
-        jobTitle: newState.jobTitle,
-        mobileNumber: newState.mobileNumber,
-        homeNumber: newState.homeNumber,
-        email: newState.email,
-        workEmail: newState.workEmail,
-        twitter: newState.twitter,
-        linkedin: newState.linkedin,
-        facebook: newState.facebook,
-        snapchat: newState.snapchat,
-        youtube: newState.youtube,
-        whatsapp: newState.whatsapp,
-        viber: newState.viber,
-        address: newState.address,
-        birthday: newState.birthday,
-      });
-      console.log(state);
-
+      props.dispatch(
+        addProfileData(
+          state.firstName,
+          state.lastName,
+          state.companyName,
+          state.jobTitle,
+          state.gender,
+          state.mobileNumber,
+          state.homePhone,
+          state.email,
+          state.workEmail,
+          state.twitter,
+          state.linkedIn,
+          state.facebook,
+          state.snapchat,
+          state.youtube,
+          state.instagram,
+          state.whatsapp,
+          state.viber,
+          state.adress,
+          state.birthday,
+          imageUrl
+        )
+      );
       setButtonText("Edit profile");
       setButtonIcon("fa fa-edit");
       setEditMode(0);
@@ -266,7 +267,6 @@ function ProfilePage(props) {
               onClick={editProfile}
             >
               <i className={ButtonIcon} />
-              {ScreenSize ? ButtonText : null}
             </Button>
           </div>
         ) : null}
@@ -274,22 +274,26 @@ function ProfilePage(props) {
         <div className="container noPaddingProfilePage">
           {EditMode ? (
             <MainSectionEdit
+              setImageUrl={setImageUrl}
+              imageUrl={imageUrl}
+              id={props.id}
               modalIsOpen={modalIsOpen}
               afterOpenModal={afterOpenModal}
               closeModal={closeModal}
               openModal={openModal}
-              state={newState}
+              state={state}
               handleOnChange={handleOnChange}
             />
           ) : (
-            <MainSection state={state} downloadContact={downloadContact} />
+            <MainSection
+              state={state}
+              downloadContact={downloadContact}
+              imageUrl={imageUrl}
+            />
           )}
 
           {EditMode ? (
-            <ContactSectionEdit
-              state={newState}
-              handleOnChange={handleOnChange}
-            />
+            <ContactSectionEdit state={state} handleOnChange={handleOnChange} />
           ) : (
             <ContactSection state={state} />
           )}
@@ -300,4 +304,10 @@ function ProfilePage(props) {
   );
 }
 
-export default ProfilePage;
+const ConnectedProfilePage = connect((state) => {
+  return {
+    store: state,
+  };
+})(ProfilePage);
+
+export default ConnectedProfilePage;

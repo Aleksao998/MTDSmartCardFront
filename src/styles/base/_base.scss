@@ -1,17 +1,27 @@
 .page-header .filter::after {
-    background-color: rgba(0, 0, 0, 0.05)!important;
-    content: "";
-    display: block;
-    height: 100%;
-    left: 0;
-    top: 0;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
 }
 
 body {
-    color: #050505!important;
-    font-size: 14px;
-    font-weight: 300;
-}   
+  color: #050505 !important;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 750px) {
+  .dropdown.show .dropdown-menu[x-placement="bottom-start"] {
+    display: contents;
+  }
+}
+
+.dropdown.show .dropdown-menu[x-placement="bottom-start"] {
+  margin-top: 25px;
+}

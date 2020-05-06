@@ -12,12 +12,13 @@ const FormTab1 = (props) => {
       <table className="fillDataTable">
         <tbody>
           <tr>
-            <td>
+            <td className="tablePadding">
               <div className="social-icons icon-circle list-unstyled list-inline">
-                <i class="fas fa-mobile"></i>
+                <i className="fas fa-mobile"></i>
               </div>
             </td>
             <td
+              className="tablePadding"
               style={{
                 columnSpan: "2!important",
                 textAlign: "left",
@@ -34,14 +35,15 @@ const FormTab1 = (props) => {
               ></input>
             </td>
           </tr>
-          <br></br>
+
           <tr>
-            <td>
+            <td className="tablePadding">
               <div className="social-icons icon-circle list-unstyled list-inline">
-                <i class="fas fa-phone"></i>
+                <i className="fas fa-phone"></i>
               </div>
             </td>
             <td
+              className="tablePadding"
               style={{
                 columnSpan: "2!important",
                 textAlign: "left",
@@ -58,14 +60,15 @@ const FormTab1 = (props) => {
               ></input>
             </td>
           </tr>
-          <br></br>
+
           <tr>
-            <td>
+            <td className="tablePadding">
               <div className="social-icons icon-circle list-unstyled list-inline">
-                <i class="fas fa-envelope"></i>
+                <i className="fas fa-envelope"></i>
               </div>
             </td>
             <td
+              className="tablePadding"
               style={{
                 columnSpan: "2!important",
                 textAlign: "left",
@@ -82,14 +85,15 @@ const FormTab1 = (props) => {
               ></input>
             </td>
           </tr>
-          <br></br>
+
           <tr>
-            <td>
+            <td className="tablePadding">
               <div className="social-icons icon-circle list-unstyled list-inline">
-                <i class="fas fa-envelope-open"></i>
+                <i className="fas fa-envelope-open"></i>
               </div>
             </td>
             <td
+              className="tablePadding"
               style={{
                 columnSpan: "2!important",
                 textAlign: "left",

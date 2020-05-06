@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import FormTab1 from "./FormTab1/FormTab1";
 import FormTab2 from "./FormTab2/FormTab2";
 import FormTab3 from "./FormTab3/FormTab3";
-import { StaticRouter } from "react-router";
 const FillDataForm = (props) => {
   const [tab, setTab] = useState(1);
   const [state, setState] = useState({
@@ -103,7 +102,7 @@ const FillDataForm = (props) => {
     <>
       <div className="page-header" style={{}}>
         <div className="container registration">
-          <div class="card-5" style={{ minHeight: "500px" }}>
+          <div className="card-5" style={{ minHeight: "500px" }}>
             {showTab()}
           </div>
         </div>

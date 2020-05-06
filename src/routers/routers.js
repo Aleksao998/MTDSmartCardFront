@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
 import validator from "validator";
 import NavBar from "../components/Navbars/Navbar";
-//Pages
 
+//Redux store
+import { connect } from "react-redux";
+import { addProfileData } from "../actions/userProfile";
+
+//Pages
 import LandingPage from "views/LandingPage/LandingPage.js";
 import ProfileRegistrationVerification from "../views/ProfilRegistrationVerification/ProfileRegistrationVerification";
 import NotFoundPage from "views/ErrorPages/404ErrorPage/NotFoundPage";
@@ -11,11 +15,18 @@ import ProductPage from "views/ProductPage/ProductPage";
 import LoginPage from "views/LoginPage/LoginPage";
 import ProfileActivation from "views/ProfileActivation/ProfileActivation";
 import FillDataForm from "views/ProfilRegistrationVerification/FillDataForm/FillDataForm";
+
+//localSTorage
+import { removeStore } from "../localStorage/localStorage";
+
 const AppRoutes = (props) => {
   const [error, setError] = useState("");
   const [token, setToken] = useState(null);
   const [isAuth, setAuth] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [loginButton, setLoginButton] = useState(false);
+  const [buttonText, setButtonText] = useState("Login");
+  const [editProfileFromMenu, setEditProfileFromMenu] = useState(0);
 
   React.useEffect(() => {
     const token = localStorage.getItem("token");
@@ -42,12 +53,11 @@ const AppRoutes = (props) => {
     }, milliseconds);
   };
   const setLocalStorage = (token, userId) => {
-    console.log("registerHandler");
     localStorage.setItem("token", token);
     localStorage.setItem("userId", userId);
     const remainingMilliseconds = 60 * 60 * 1000;
     const expiryDate = new Date(new Date().getTime() + remainingMilliseconds);
-    console.log("Set local storage");
+
     setToken(token);
     setAuth(true);
     setUserId(userId);
@@ -55,11 +65,12 @@ const AppRoutes = (props) => {
     localStorage.setItem("expiryDate", expiryDate.toISOString());
   };
   const logoutHandler = () => {
-    console.log("logout");
+    setEditProfileFromMenu(0);
     setError("");
     setToken(null);
     setAuth(false);
     setUserId(null);
+    removeStore();
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
@@ -75,6 +86,8 @@ const AppRoutes = (props) => {
       setError("Email format is incorect");
       return;
     }
+    setButtonText(null);
+    setLoginButton(true);
     fetch("http://localhost:3003/auth/login", {
       method: "POST",
       headers: {
@@ -99,12 +112,40 @@ const AppRoutes = (props) => {
         return res.json();
       })
       .then((resData) => {
+        console.log(resData.user);
+        props.dispatch(
+          addProfileData(
+            resData.user.profileData.firstName,
+            resData.user.profileData.lastName,
+            resData.user.profileData.companyName,
+            resData.user.profileData.jobTitle,
+            resData.user.profileData.gender,
+            resData.user.profileData.contactInfo.mobilePhone,
+            resData.user.profileData.contactInfo.homePhone,
+            resData.user.profileData.contactInfo.email,
+            resData.user.profileData.contactInfo.workEmail,
+            resData.user.profileData.socialNetwork.twitter,
+            resData.user.profileData.socialNetwork.linkedIn,
+            resData.user.profileData.socialNetwork.facebook,
+            resData.user.profileData.socialNetwork.snapchat,
+            resData.user.profileData.socialNetwork.youtube,
+            resData.user.profileData.socialNetwork.instagram,
+            resData.user.profileData.directMessage.whatsapp,
+            resData.user.profileData.directMessage.viber,
+            resData.user.profileData.personalInfo.adress,
+            resData.user.profileData.personalInfo.birthday,
+            resData.profileImage
+          )
+        );
+        setButtonText("login");
+        setLoginButton(false);
         setLocalStorage(resData.token, resData.userId);
         const url = "/profile-page/" + resData.userId;
-        console.log(resData.userId);
         props.history.replace(url);
       })
       .catch((err) => {
+        setButtonText("login");
+        setLoginButton(false);
         if (err.message === "Failed to fetch")
           err.message = "Techical problems with server, please trt later!";
         setError(err.message);
@@ -113,7 +154,13 @@ const AppRoutes = (props) => {
 
   return (
     <div>
-      <NavBar isAuth={isAuth} userId={userId} logout={logoutHandler} />
+      <NavBar
+        setEditProfileFromMenu={setEditProfileFromMenu}
+        isAuth={isAuth}
+        userId={userId}
+        logout={logoutHandler}
+        {...props}
+      />
       <Switch>
         <Route
           path="/"
@@ -126,6 +173,8 @@ const AppRoutes = (props) => {
           render={(props) => (
             <ProfileRegistrationVerification
               {...props}
+              setEditProfileFromMenu={setEditProfileFromMenu}
+              editProfileFromMenu={editProfileFromMenu}
               token={token}
               userId={userId}
               setLocalStorage={setLocalStorage}
@@ -153,7 +202,15 @@ const AppRoutes = (props) => {
         <Route
           path="/login-page"
           render={(props) => (
-            <LoginPage {...props} login={login} error={error} />
+            <LoginPage
+              {...props}
+              buttonText={buttonText}
+              setButtonText={setButtonText}
+              setLoginButton={setLoginButton}
+              login={login}
+              error={error}
+              loginButton={loginButton}
+            />
           )}
         />
 
@@ -163,4 +220,10 @@ const AppRoutes = (props) => {
   );
 };
 
-export default withRouter(AppRoutes);
+const ConnectedAppRoutes = connect((state) => {
+  return {
+    store: state,
+  };
+})(AppRoutes);
+
+export default withRouter(ConnectedAppRoutes);

@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import validator from "validator";
 // reactstrap components
-import { Button, Card, Form, Container, Row, Col } from "reactstrap";
+import { Button, Form } from "reactstrap";
 
 // core components
 
 function RegisterPage(props) {
   const [error, setError] = useState("");
   const [check, setCheck] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
   const [state, setState] = useState({
     email: "",
     password: "",
     firstName: "",
     lastName: "",
+    companyName: "",
+    jobTitle: "",
     repassword: "",
   });
 
@@ -24,17 +27,21 @@ function RegisterPage(props) {
   const handleCheck = () => {
     setCheck(!check);
   };
-
+  const handleOptionChange = (changeEvent) => {
+    setSelectedOption(changeEvent.target.value);
+  };
   const createNewProfile = (event) => {
     event.preventDefault();
-
     //Check if all fields are filed
     if (
       state.email === "" ||
       state.password === "" ||
       state.firstName === "" ||
       state.lastName === "" ||
-      state.repassword === ""
+      state.companyName === "" ||
+      state.jobTitle === "" ||
+      state.repassword === "" ||
+      selectedOption === ""
     ) {
       setError("All field must be filed!");
       return;
@@ -72,8 +79,6 @@ function RegisterPage(props) {
     //Check if email already exist
     fetch("http://localhost:3003/profile/checkEmail?email=" + state.email)
       .then((res) => {
-        console.log("asdadasdasd");
-        console.log(res);
         if (res.status !== 200) {
           throw new Error("Email already exists!");
         }
@@ -89,6 +94,9 @@ function RegisterPage(props) {
             password: state.password,
             firstName: state.firstName,
             lastName: state.lastName,
+            companyName: state.companyName,
+            jobTitle: state.jobTitle,
+            gender: selectedOption,
           }),
         });
       })
@@ -119,39 +127,39 @@ function RegisterPage(props) {
     <>
       <div className="page-header" style={{}}>
         <div className="container registration">
-          <div class="card-5">
+          <div className="card-5">
             <h3 className="titleRegistration">Welcome</h3>
             <br />
             <Form className="register-form">
               {error ? <div> {error} </div> : null}
-              <div class="row m-b-55-20">
+              <div className="row m-b-55-20">
                 <div className="col-md-3">
-                  <div class="form-name">Name</div>
+                  <div className="form-name">Personal info</div>
                 </div>
 
                 <div className="col-md-9">
-                  <div class="form-value">
-                    <div class="row row-space">
-                      <div class="col-md-6">
-                        <div class="input-group-desc">
+                  <div className="form-value">
+                    <div className="row row-space">
+                      <div className="col-md-6">
+                        <div className="input-group-desc">
                           <input
-                            class="input--style-5"
+                            className="input--style-5"
                             type="text"
                             name="firstName"
                             onChange={handleOnChange}
                           />
-                          <label class="label--desc">first name</label>
+                          <label className="label--desc">First Name</label>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="input-group-desc">
+                      <div className="col-md-6">
+                        <div className="input-group-desc">
                           <input
-                            class="input--style-5"
+                            className="input--style-5"
                             type="text"
                             name="lastName"
                             onChange={handleOnChange}
                           />
-                          <label class="label--desc">last name</label>
+                          <label className="label--desc">Last Name</label>
                         </div>
                       </div>
                     </div>
@@ -159,15 +167,82 @@ function RegisterPage(props) {
                 </div>
               </div>
 
-              <div class="row m-b-55-20">
+              <div className="row m-b-55-20">
                 <div className="col-md-3">
-                  <div class="form-name">Email</div>
+                  <div className="form-name">Personal info</div>
+                </div>
+
+                <div className="col-md-9">
+                  <div className="form-value">
+                    <div className="row row-space">
+                      <div className="col-md-6">
+                        <div className="input-group-desc">
+                          <input
+                            className="input--style-5"
+                            type="text"
+                            name="companyName"
+                            onChange={handleOnChange}
+                          />
+                          <label className="label--desc">Company Name</label>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="input-group-desc">
+                          <input
+                            className="input--style-5"
+                            type="text"
+                            name="jobTitle"
+                            onChange={handleOnChange}
+                          />
+                          <label className="label--desc">Job Title</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row m-b-55-20">
+                <div className="col-md-3">
+                  <div className="form-name">Gender</div>
                 </div>
                 <div className="col-md-9">
-                  <div class="form-value">
-                    <div class="input-group">
+                  <div className="form-value">
+                    <div className="input-group">
+                      <label className="containerCheck">
+                        <input
+                          type="radio"
+                          value="female"
+                          checked={selectedOption === "female"}
+                          onChange={handleOptionChange}
+                        />
+                        Female
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="containerCheck">
+                        <input
+                          type="radio"
+                          value="male"
+                          checked={selectedOption === "male"}
+                          onChange={handleOptionChange}
+                        />
+                        Male
+                        <span className="checkmark"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row m-b-55-20">
+                <div className="col-md-3">
+                  <div className="form-name">Email</div>
+                </div>
+                <div className="col-md-9">
+                  <div className="form-value">
+                    <div className="input-group">
                       <input
-                        class="input--style-5"
+                        className="input--style-5"
                         type="email"
                         name="email"
                         onChange={handleOnChange}
@@ -177,34 +252,34 @@ function RegisterPage(props) {
                 </div>
               </div>
 
-              <div class="row m-b-55-20">
+              <div className="row m-b-55-20">
                 <div className="col-md-3">
-                  <div class="form-name">Password</div>
+                  <div className="form-name">Password</div>
                 </div>
 
                 <div className="col-md-9">
-                  <div class="form-value">
-                    <div class="row row-space">
-                      <div class="col-md-6">
-                        <div class="input-group-desc">
+                  <div className="form-value">
+                    <div className="row row-space">
+                      <div className="col-md-6">
+                        <div className="input-group-desc">
                           <input
-                            class="input--style-5"
+                            className="input--style-5"
                             type="password"
                             name="password"
                             onChange={handleOnChange}
                           />
-                          <label class="label--desc">password</label>
+                          <label className="label--desc">password</label>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="input-group-desc">
+                      <div className="col-md-6">
+                        <div className="input-group-desc">
                           <input
-                            class="input--style-5"
+                            className="input--style-5"
                             type="password"
                             name="repassword"
                             onChange={handleOnChange}
                           />
-                          <label class="label--desc">repeat password</label>
+                          <label className="label--desc">repeat password</label>
                         </div>
                       </div>
                     </div>
@@ -213,30 +288,30 @@ function RegisterPage(props) {
               </div>
               <br />
 
-              <div class="row m-b-55-20">
+              <div className="row m-b-55-20">
                 <div className="col-3">
                   <input
                     type="checkbox"
                     name="agree-term"
                     id="agree-term"
-                    class="agree-term"
+                    className="agree-term"
                     onChange={handleCheck}
                   />
                 </div>
                 <div className="col-9">
-                  <label for="agree-term" class="label-agree-term">
+                  <label htmlFor="agree-term" className="label-agree-term">
                     <span>
                       <span></span>
                     </span>
                     I agree all statements in{" "}
-                    <a href="/#" class="term-service">
+                    <a href="/#" className="term-service">
                       Terms of service
                     </a>
                   </label>
                 </div>
               </div>
 
-              <div class="row m-b-10">
+              <div className="row m-b-10">
                 <Button
                   block
                   className="form-submit"

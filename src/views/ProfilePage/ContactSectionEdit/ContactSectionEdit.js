@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
 // reactstrap components
 
 function ContactEditSection(props) {
-  const [popoverOpen, setPopoverOpen] = useState(false);
-
-  const toggle = () => setPopoverOpen(!popoverOpen);
   return (
-    <div class="service_area">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xl-4 col-md-4">
+    <div className="service_area">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-xl-4 col-md-4">
             <div
-              class="single_service text-center wow fadeInLeft"
+              className="single_service text-center wow fadeInLeft"
               data-wow-duration="1.2s"
               data-wow-delay=".4s"
             >
@@ -22,12 +19,13 @@ function ContactEditSection(props) {
               <table style={{ width: "100%" }}>
                 <tbody>
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fas fa-mobile"></i>
+                        <i className="fas fa-mobile"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -45,14 +43,15 @@ function ContactEditSection(props) {
                       </div>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fas fa-phone"></i>
+                        <i className="fas fa-phone"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -69,14 +68,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fas fa-envelope"></i>
+                        <i className="fas fa-envelope"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -93,14 +93,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fas fa-envelope-open"></i>
+                        <i className="fas fa-envelope-open"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -122,9 +123,9 @@ function ContactEditSection(props) {
             </div>
           </div>
 
-          <div class="col-xl-4 col-md-4">
+          <div className="col-xl-4 col-md-4">
             <div
-              class="single_service text-center wow fadeInUp"
+              className="single_service text-center wow fadeInUp"
               data-wow-duration="1s"
               data-wow-delay=".3s"
             >
@@ -134,12 +135,13 @@ function ContactEditSection(props) {
               <table style={{ width: "100%" }}>
                 <tbody>
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fab fa-twitter"></i>
+                        <i className="fab fa-twitter"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -156,14 +158,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fab fa-linkedin-in"></i>
+                        <i className="fab fa-linkedin-in"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -179,14 +182,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fab fa-instagram"></i>
+                        <i className="fab fa-instagram"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -203,14 +207,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fab fa-facebook-f"></i>
+                        <i className="fab fa-facebook-f"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "3!important",
                         textAlign: "left",
@@ -227,14 +232,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fab fa-snapchat-ghost"></i>
+                        <i className="fab fa-snapchat-ghost"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -251,14 +257,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fab fa-youtube"></i>
+                        <i className="fab fa-youtube"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -280,9 +287,9 @@ function ContactEditSection(props) {
             </div>
           </div>
 
-          <div class="col-xl-4 col-md-4">
+          <div className="col-xl-4 col-md-4">
             <div
-              class="single_service text-center wow fadeInRight"
+              className="single_service text-center wow fadeInRight"
               data-wow-duration="1.2s"
               data-wow-delay=".4s"
             >
@@ -294,12 +301,13 @@ function ContactEditSection(props) {
               <table style={{ width: "100%" }}>
                 <tbody>
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fab fa-whatsapp"></i>
+                        <i className="fab fa-whatsapp"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -316,14 +324,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fab fa-viber "></i>
+                        <i className="fab fa-viber "></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -340,14 +349,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fas fa-home"></i>
+                        <i className="fas fa-home"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",
@@ -364,14 +374,15 @@ function ContactEditSection(props) {
                       ></input>
                     </td>
                   </tr>
-                  <br></br>
+
                   <tr className="contactRow">
-                    <td>
+                    <td className="tablePadding">
                       <div className="social-icons icon-circle list-unstyled list-inline">
-                        <i class="fas fa-birthday-cake"></i>
+                        <i className="fas fa-birthday-cake"></i>
                       </div>
                     </td>
                     <td
+                      className="tablePadding"
                       style={{
                         columnSpan: "2!important",
                         textAlign: "left",

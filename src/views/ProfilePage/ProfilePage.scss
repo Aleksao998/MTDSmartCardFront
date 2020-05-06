@@ -1,22 +1,23 @@
-.EditButtonSection{
-    text-align: right;
-    margin-top: 20px;
-    margin-right: 20px;
+.EditButtonSection {
+  text-align: right;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 .owner {
-    margin-top: -20px!important;
-    text-align: center;
+  margin-top: -60px !important;
+  text-align: center;
 }
 
-.btnEditSave{
-    background-color: white!important;
-    color:#66615B!important;
-    border: 2px solid #66615B;
+.btnEditSave {
+  background-color: white !important;
+  color: #66615b !important;
+  border: 2px solid #66615b;
 }
 
-.btnEditSave:hover, .btnEditSave:active {
-    background-color: #66615B!important;
-    color:white!important;
-    border: 2px solid #66615B;
+.btnEditSave:hover,
+.btnEditSave:active {
+  background-color: #66615b !important;
+  color: white !important;
+  border: 2px solid #66615b;
 }
