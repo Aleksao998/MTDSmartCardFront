@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/MTDSmartCard/static/css/main.8acf994c.chunk.css",
-    "main.js": "/MTDSmartCard/static/js/main.55983157.chunk.js",
-    "main.js.map": "/MTDSmartCard/static/js/main.55983157.chunk.js.map",
-    "runtime~main.js": "/MTDSmartCard/static/js/runtime~main.917c8f70.js",
-    "runtime~main.js.map": "/MTDSmartCard/static/js/runtime~main.917c8f70.js.map",
-    "static/js/2.99fbc40b.chunk.js": "/MTDSmartCard/static/js/2.99fbc40b.chunk.js",
-    "static/js/2.99fbc40b.chunk.js.map": "/MTDSmartCard/static/js/2.99fbc40b.chunk.js.map",
+    "main.css": "/MTDSmartCard/static/css/main.1efc067c.chunk.css",
+    "main.js": "/MTDSmartCard/static/js/main.746ad608.chunk.js",
+    "main.js.map": "/MTDSmartCard/static/js/main.746ad608.chunk.js.map",
+    "runtime-main.js": "/MTDSmartCard/static/js/runtime-main.d9b3bdbb.js",
+    "runtime-main.js.map": "/MTDSmartCard/static/js/runtime-main.d9b3bdbb.js.map",
+    "static/js/2.c45d2f22.chunk.js": "/MTDSmartCard/static/js/2.c45d2f22.chunk.js",
+    "static/js/2.c45d2f22.chunk.js.map": "/MTDSmartCard/static/js/2.c45d2f22.chunk.js.map",
     "index.html": "/MTDSmartCard/index.html",
-    "precache-manifest.ee99234af56baf1e49745738fcdec1fa.js": "/MTDSmartCard/precache-manifest.ee99234af56baf1e49745738fcdec1fa.js",
+    "precache-manifest.188073b760390d7b81bc870307b7e53f.js": "/MTDSmartCard/precache-manifest.188073b760390d7b81bc870307b7e53f.js",
     "service-worker.js": "/MTDSmartCard/service-worker.js",
-    "static/css/main.8acf994c.chunk.css.map": "/MTDSmartCard/static/css/main.8acf994c.chunk.css.map",
+    "static/css/main.1efc067c.chunk.css.map": "/MTDSmartCard/static/css/main.1efc067c.chunk.css.map",
+    "static/js/2.c45d2f22.chunk.js.LICENSE.txt": "/MTDSmartCard/static/js/2.c45d2f22.chunk.js.LICENSE.txt",
+    "static/js/main.746ad608.chunk.js.LICENSE.txt": "/MTDSmartCard/static/js/main.746ad608.chunk.js.LICENSE.txt",
     "static/media/about-img.jpg": "/MTDSmartCard/static/media/about-img.3ededb3c.jpg",
     "static/media/card1.png": "/MTDSmartCard/static/media/card1.d779ebe0.png",
     "static/media/clem-onojeghuo-3.jpg": "/MTDSmartCard/static/media/clem-onojeghuo-3.ae11d928.jpg",
@@ -19,7 +21,12 @@
     "static/media/fabio-mangione.jpg": "/MTDSmartCard/static/media/fabio-mangione.f26c34bb.jpg",
     "static/media/image.JPG": "/MTDSmartCard/static/media/image.13d56612.JPG",
     "static/media/joe-gardner-2.jpg": "/MTDSmartCard/static/media/joe-gardner-2.76ff47ae.jpg",
-    "static/media/login-image.jpg": "/MTDSmartCard/static/media/login-image.be9fa468.jpg",
     "static/media/paper-kit.scss": "/MTDSmartCard/static/media/nucleo-icons.f32ed5ad.eot"
-  }
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d9b3bdbb.js",
+    "static/js/2.c45d2f22.chunk.js",
+    "static/css/main.1efc067c.chunk.css",
+    "static/js/main.746ad608.chunk.js"
+  ]
 }

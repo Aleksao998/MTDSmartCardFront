@@ -1,23 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6a3e7bd9c256a77634feaac55eb3ac66",
+    "revision": "00943dc850abd291844a33ec6e8caa5d",
     "url": "/MTDSmartCard/index.html"
   },
   {
-    "revision": "d01f285de60c6bf5e697",
-    "url": "/MTDSmartCard/static/css/main.8acf994c.chunk.css"
+    "revision": "d3120491d9889972137a",
+    "url": "/MTDSmartCard/static/css/main.1efc067c.chunk.css"
   },
   {
-    "revision": "fb842b7a12442d2a361d",
-    "url": "/MTDSmartCard/static/js/2.99fbc40b.chunk.js"
+    "revision": "92e716f76de06ae5de63",
+    "url": "/MTDSmartCard/static/js/2.c45d2f22.chunk.js"
   },
   {
-    "revision": "d01f285de60c6bf5e697",
-    "url": "/MTDSmartCard/static/js/main.55983157.chunk.js"
+    "revision": "0afe6f0629208a46fd2254e0b7af34b3",
+    "url": "/MTDSmartCard/static/js/2.c45d2f22.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "786ccbffaf4fe2aa8046",
-    "url": "/MTDSmartCard/static/js/runtime~main.917c8f70.js"
+    "revision": "d3120491d9889972137a",
+    "url": "/MTDSmartCard/static/js/main.746ad608.chunk.js"
+  },
+  {
+    "revision": "6286d7163df321efe175e9f4f047310a",
+    "url": "/MTDSmartCard/static/js/main.746ad608.chunk.js.LICENSE.txt"
+  },
+  {
+    "revision": "b13cf7bb3969830ea391",
+    "url": "/MTDSmartCard/static/js/runtime-main.d9b3bdbb.js"
   },
   {
     "revision": "3ededb3ce0deabccd43667973d074acd",
@@ -106,10 +114,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "76ff47ae5c64ccda5af18326bb272058",
     "url": "/MTDSmartCard/static/media/joe-gardner-2.76ff47ae.jpg"
-  },
-  {
-    "revision": "be9fa468a029a195601370492c15519d",
-    "url": "/MTDSmartCard/static/media/login-image.be9fa468.jpg"
   },
   {
     "revision": "48ac036da7c7923266266f63746fc5f1",
