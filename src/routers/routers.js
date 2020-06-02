@@ -70,7 +70,8 @@ const AppRoutes = (props) => {
     setToken(null);
     setAuth(false);
     setUserId(null);
-    removeStore();
+
+    localStorage.removeItem("store");
     localStorage.removeItem("token");
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
@@ -257,7 +258,11 @@ const AppRoutes = (props) => {
           )}
         />
 
-        <Route component={NotFoundPage} />
+        <Route
+          component={NotFoundPage}
+          setPageChange={setPageChange}
+          pageChange={pageChange}
+        />
       </Switch>
     </div>
   );

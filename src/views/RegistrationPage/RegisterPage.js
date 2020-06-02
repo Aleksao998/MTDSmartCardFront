@@ -87,22 +87,25 @@ function RegisterPage(props) {
           throw new Error("Email already exists!");
         }
 
-        return fetch("http://localhost:3001/auth/signup", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: props.id,
-            email: state.email,
-            password: state.password,
-            firstName: state.firstName,
-            lastName: state.lastName,
-            companyName: state.companyName,
-            jobTitle: state.jobTitle,
-            gender: selectedOption,
-          }),
-        });
+        return fetch(
+          "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/auth/signup",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: props.id,
+              email: state.email,
+              password: state.password,
+              firstName: state.firstName,
+              lastName: state.lastName,
+              companyName: state.companyName,
+              jobTitle: state.jobTitle,
+              gender: selectedOption,
+            }),
+          }
+        );
       })
       .then((res) => {
         if (res.status !== 200) {
@@ -111,6 +114,7 @@ function RegisterPage(props) {
         return res.json();
       })
       .then((resData) => {
+        props.setLocalStorage(resData.token, resData.id);
         props.history.push("/fill-data/" + resData.id);
       })
       .catch((err) => {
