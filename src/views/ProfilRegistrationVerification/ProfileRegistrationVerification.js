@@ -15,7 +15,9 @@ const ProfileRegistrationVerification = (props) => {
   useEffect(() => {
     console.log("___________________");
     console.log(props.location.search);
-    const url = "http://localhost:3003/profile/findProfileById/" + id;
+    const url =
+      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/findProfileById/" +
+      id;
     fetch(url)
       .then((res) => {
         if (res.status === 200) {
@@ -33,7 +35,9 @@ const ProfileRegistrationVerification = (props) => {
         setVerified(3);
       });
   }, [id]);
-
+  React.useEffect(() => {
+    props.setPageChange(!props.pageChange);
+  }, []);
   const renderComponent = () => {
     switch (verified) {
       case 0:
@@ -42,6 +46,8 @@ const ProfileRegistrationVerification = (props) => {
         return (
           <RegistrationPage
             id={id}
+            setPageChange={props.setPageChange}
+            pageChange={props.pageChange}
             useForceUpdate={useForceUpdate}
             setLocalStorage={props.setLocalStorage}
           />
@@ -49,6 +55,8 @@ const ProfileRegistrationVerification = (props) => {
       case 2:
         return (
           <ProfilePage
+            setPageChange={props.setPageChange}
+            pageChange={props.pageChange}
             setEditProfileFromMenu={props.setEditProfileFromMenu}
             editProfileFromMenu={props.editProfileFromMenu}
             id={id}

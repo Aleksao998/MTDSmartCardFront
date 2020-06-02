@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 const ProfileActivation = (props) => {
   const [text, setText] = useState("You have activated your account!");
   useEffect(() => {
+    props.setPageChange(!props.pageChange);
     const url =
-      "http://localhost:3003/auth/validateProfile/" + props.match.params.id;
+      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/auth/validateProfile/" +
+      props.match.params.id;
     fetch(url)
       .then((res) => {
         if (res.status === 401) {
@@ -32,6 +34,7 @@ const ProfileActivation = (props) => {
         console.log(err);
       });
   }, []);
+
   return (
     <div id="notfound">
       <div className="notfound">

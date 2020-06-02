@@ -42,16 +42,26 @@ function ExamplesNavbar(props) {
     document.documentElement.classList.toggle("nav-open");
   };
 
+  React.useEffect(() => {
+    if (navbarCollapse) {
+      console.log("usao");
+      setNavbarCollapse(!navbarCollapse);
+    }
+  }, [props.pageChange]);
+
   const deleteUser = () => {
-    fetch("http://localhost:3003/profile/deleteUser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: props.userId,
-      }),
-    })
+    fetch(
+      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/deleteUser",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: props.userId,
+        }),
+      }
+    )
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Creating or editing a post failed!");
@@ -116,8 +126,7 @@ function ExamplesNavbar(props) {
           <div className="navbar-translate">
             <NavbarBrand
               data-placement="bottom"
-              to="/index"
-              target="_blank"
+              to="/"
               title="Coded by Creative Tim"
               tag={Link}
             >
@@ -200,6 +209,14 @@ function ExamplesNavbar(props) {
                   </NavLink>
                 </NavItem>
               ) : null}
+
+              {props.isAuth ? null : (
+                <NavItem onClick={props.logout}>
+                  <NavLink to="/checkout" tag={Link}>
+                    Buy card
+                  </NavLink>
+                </NavItem>
+              )}
             </Nav>
           </Collapse>
         </Container>

@@ -37,7 +37,11 @@ const ImageModal = (props) => {
       },
     };
     axios
-      .post("http://localhost:3003/profile/uploadImage", bodyFormData, config)
+      .post(
+        "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/uploadImage",
+        bodyFormData,
+        config
+      )
       .then((response) => {
         props.setImageUrl(canvas2);
         props.closeModal();

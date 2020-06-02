@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import validator from "validator";
+import { withRouter } from "react-router-dom";
 // reactstrap components
 import { Button, Form } from "reactstrap";
 
@@ -77,13 +78,16 @@ function RegisterPage(props) {
     }
 
     //Check if email already exist
-    fetch("http://localhost:3003/profile/checkEmail?email=" + state.email)
+    fetch(
+      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/checkEmail?email=" +
+        state.email
+    )
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Email already exists!");
         }
 
-        return fetch("http://localhost:3003/auth/signup", {
+        return fetch("http://localhost:3001/auth/signup", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -107,7 +111,7 @@ function RegisterPage(props) {
         return res.json();
       })
       .then((resData) => {
-        props.useForceUpdate();
+        props.history.push("/fill-data/" + resData.id);
       })
       .catch((err) => {
         if (err.message === "Failed to fetch")
@@ -118,14 +122,11 @@ function RegisterPage(props) {
 
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
-    document.body.classList.add("register-page");
-    return function cleanup() {
-      document.body.classList.remove("register-page");
-    };
-  });
+    props.setPageChange(!props.pageChange);
+  }, []);
   return (
     <>
-      <div className="page-header" style={{}}>
+      <div className="page-headerReg paddingReg" style={{}}>
         <div className="container registration">
           <div className="card-5">
             <h3 className="titleRegistration">Welcome</h3>
@@ -329,4 +330,4 @@ function RegisterPage(props) {
   );
 }
 
-export default RegisterPage;
+export default withRouter(RegisterPage);

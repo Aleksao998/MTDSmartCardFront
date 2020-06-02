@@ -33,7 +33,7 @@ const FillDataForm = (props) => {
     setTab(tab - 1);
   };
   const submit = () => {
-    fetch("http://localhost:3003/auth/fillData", {
+    fetch("http://localhost:3001/auth/fillData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,6 +66,9 @@ const FillDataForm = (props) => {
         console.log(err);
       });
   };
+  React.useEffect(() => {
+    props.setPageChange(!props.pageChange);
+  }, []);
   const showTab = () => {
     switch (tab) {
       case 1:

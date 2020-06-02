@@ -15,7 +15,7 @@ import ProductPage from "views/ProductPage/ProductPage";
 import LoginPage from "views/LoginPage/LoginPage";
 import ProfileActivation from "views/ProfileActivation/ProfileActivation";
 import FillDataForm from "views/ProfilRegistrationVerification/FillDataForm/FillDataForm";
-
+import CheckoutPage from "views/CheckoutPage/CheckoutPage";
 //localSTorage
 import { removeStore } from "../localStorage/localStorage";
 
@@ -27,7 +27,7 @@ const AppRoutes = (props) => {
   const [loginButton, setLoginButton] = useState(false);
   const [buttonText, setButtonText] = useState("Login");
   const [editProfileFromMenu, setEditProfileFromMenu] = useState(0);
-
+  const [pageChange, setPageChange] = React.useState(false);
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
@@ -88,16 +88,19 @@ const AppRoutes = (props) => {
     }
     setButtonText(null);
     setLoginButton(true);
-    fetch("http://localhost:3003/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
+    fetch(
+      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      }
+    )
       .then((res) => {
         if (res.status === 500) {
           throw new Error("Techical problems with server, please trt later!");
@@ -155,6 +158,8 @@ const AppRoutes = (props) => {
   return (
     <div>
       <NavBar
+        pageChange={pageChange}
+        setPageChange={setPageChange}
         setEditProfileFromMenu={setEditProfileFromMenu}
         isAuth={isAuth}
         userId={userId}
@@ -164,7 +169,13 @@ const AppRoutes = (props) => {
       <Switch>
         <Route
           path="/"
-          render={(props) => <LandingPage {...props} />}
+          render={(props) => (
+            <LandingPage
+              {...props}
+              setPageChange={setPageChange}
+              pageChange={pageChange}
+            />
+          )}
           exact={true}
         />
 
@@ -173,6 +184,8 @@ const AppRoutes = (props) => {
           render={(props) => (
             <ProfileRegistrationVerification
               {...props}
+              setPageChange={setPageChange}
+              pageChange={pageChange}
               setEditProfileFromMenu={setEditProfileFromMenu}
               editProfileFromMenu={editProfileFromMenu}
               token={token}
@@ -185,18 +198,46 @@ const AppRoutes = (props) => {
         <Route
           path="/auth/:id"
           render={(props) => (
-            <ProfileActivation {...props} setLocalStorage={setLocalStorage} />
+            <ProfileActivation
+              {...props}
+              setLocalStorage={setLocalStorage}
+              setPageChange={setPageChange}
+              pageChange={pageChange}
+            />
           )}
         />
 
         <Route
           path="/product-page"
-          render={(props) => <ProductPage {...props} />}
+          render={(props) => (
+            <ProductPage
+              {...props}
+              setPageChange={setPageChange}
+              pageChange={pageChange}
+            />
+          )}
         />
 
         <Route
           path="/fill-data/:id"
-          render={(props) => <FillDataForm {...props} />}
+          render={(props) => (
+            <FillDataForm
+              {...props}
+              setPageChange={setPageChange}
+              pageChange={pageChange}
+            />
+          )}
+        />
+
+        <Route
+          path="/checkout"
+          render={(props) => (
+            <CheckoutPage
+              {...props}
+              setPageChange={setPageChange}
+              pageChange={pageChange}
+            />
+          )}
         />
 
         <Route
@@ -204,6 +245,8 @@ const AppRoutes = (props) => {
           render={(props) => (
             <LoginPage
               {...props}
+              setPageChange={setPageChange}
+              pageChange={pageChange}
               buttonText={buttonText}
               setButtonText={setButtonText}
               setLoginButton={setLoginButton}

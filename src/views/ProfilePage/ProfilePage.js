@@ -11,6 +11,7 @@ import DemoFooter from "components/Footers/DemoFooter.js";
 import MainSection from "./MainSection/MainSection";
 import MainSectionEdit from "./MainSectionEdit/MainSectionEdit";
 import ContactSection from "./ContactSection/ContactSection";
+import ContactSectionMobile from "./ContactSectionMobile/ContactSectionMobile";
 import ContactSectionEdit from "./ContactSectionEdit/ContactSectionEdit";
 
 //Redux
@@ -19,9 +20,10 @@ import { addProfileData } from "../../actions/userProfile";
 //localSTorage
 import { saveStore, loadStore } from "../../localStorage/localStorage";
 function ProfilePage(props) {
+  document.documentElement.classList.remove("nav-open");
   const linkRef = React.createRef();
   //ReactState
-
+  const [mobile, setIsMobile] = React.useState(false);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [EditMode, setEditMode] = useState(0);
   const [ButtonText, setButtonText] = useState("Edit profile");
@@ -61,7 +63,7 @@ function ProfilePage(props) {
     setState({ ...state, [name]: value });
   };
   const downloadContact = () => {
-    const Url = `http://localhost:3003/profile/createVCF?
+    const Url = `https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/createVCF?
                                                           firstName=${state.firstName}&
                                                           lastName=${state.lastName}&
                                                           organization=MTD&
@@ -99,9 +101,78 @@ function ProfilePage(props) {
         console.log(err);
       });
   };
+  const editProfile = () => {
+    if (ButtonText === "Edit profile") {
+      setButtonText("Save");
+      setButtonIcon("fa fa-save");
+      setEditMode(1);
+    } else {
+      props.history.push("/profile-page/" + props.id + "?edit=false");
+      props.setEditProfileFromMenu(0);
 
-  document.documentElement.classList.remove("nav-open");
+      fetch(
+        "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/updateProfile/",
+        {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + props.token,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: state.firstName,
+            lastName: state.lastName,
+            companyName: state.companyName,
+            jobTitle: state.jobTitle,
+            mobileNumber: state.mobileNumber,
+            homeNumber: state.homeNumber,
+            email: state.email,
+            workEmail: state.workEmail,
+            twitter: state.twitter,
+            linkedin: state.linkedin,
+            facebook: state.facebook,
+            snapchat: state.snapchat,
+            youtube: state.youtube,
+            whatsapp: state.whatsapp,
+            viber: state.viber,
+            address: state.address,
+            birthday: state.birthday,
+          }),
+        }
+      )
+        .then((res) => {})
+        .catch((err) => {
+          console.log(err);
+        });
 
+      props.dispatch(
+        addProfileData(
+          state.firstName,
+          state.lastName,
+          state.companyName,
+          state.jobTitle,
+          state.gender,
+          state.mobileNumber,
+          state.homePhone,
+          state.email,
+          state.workEmail,
+          state.twitter,
+          state.linkedIn,
+          state.facebook,
+          state.snapchat,
+          state.youtube,
+          state.instagram,
+          state.whatsapp,
+          state.viber,
+          state.adress,
+          state.birthday,
+          imageUrl
+        )
+      );
+      setButtonText("Edit profile");
+      setButtonIcon("fa fa-edit");
+      setEditMode(0);
+    }
+  };
   React.useEffect(() => {
     console.log("Use effect");
     let params = queryString.parse(props.location.search);
@@ -145,7 +216,10 @@ function ProfilePage(props) {
       setImageUrl(store.profileData.imageUrl);
     } else {
       console.log("fetch");
-      fetch("http://localhost:3003/profile/profileData/" + props.id)
+      fetch(
+        "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/profileData/" +
+          props.id
+      )
         .then((res) => {
           if (res.status !== 200) {
             throw new Error("Failed to fetch posts.");
@@ -182,77 +256,14 @@ function ProfilePage(props) {
           console.log(err);
         });
     }
-  }, [props.editProfileFromMenu]);
-
-  const editProfile = () => {
-    if (ButtonText === "Edit profile") {
-      setButtonText("Save");
-      setButtonIcon("fa fa-save");
-      setEditMode(1);
-    } else {
-      props.history.push("/profile-page/" + props.id + "?edit=false");
-      props.setEditProfileFromMenu(0);
-
-      fetch("http://localhost:3003/profile/updateProfile/", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + props.token,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: state.firstName,
-          lastName: state.lastName,
-          companyName: state.companyName,
-          jobTitle: state.jobTitle,
-          mobileNumber: state.mobileNumber,
-          homeNumber: state.homeNumber,
-          email: state.email,
-          workEmail: state.workEmail,
-          twitter: state.twitter,
-          linkedin: state.linkedin,
-          facebook: state.facebook,
-          snapchat: state.snapchat,
-          youtube: state.youtube,
-          whatsapp: state.whatsapp,
-          viber: state.viber,
-          address: state.address,
-          birthday: state.birthday,
-        }),
-      })
-        .then((res) => {})
-        .catch((err) => {
-          console.log(err);
-        });
-
-      props.dispatch(
-        addProfileData(
-          state.firstName,
-          state.lastName,
-          state.companyName,
-          state.jobTitle,
-          state.gender,
-          state.mobileNumber,
-          state.homePhone,
-          state.email,
-          state.workEmail,
-          state.twitter,
-          state.linkedIn,
-          state.facebook,
-          state.snapchat,
-          state.youtube,
-          state.instagram,
-          state.whatsapp,
-          state.viber,
-          state.adress,
-          state.birthday,
-          imageUrl
-        )
-      );
-      setButtonText("Edit profile");
-      setButtonIcon("fa fa-edit");
-      setEditMode(0);
+    if (window.innerWidth < 700) {
+      setIsMobile(true);
     }
-  };
+  }, [props.editProfileFromMenu]);
+  React.useEffect(() => {
+    props.setPageChange(!props.pageChange);
+  }, []);
+
   return (
     <>
       <ProfilePageHeader />
@@ -294,6 +305,8 @@ function ProfilePage(props) {
 
           {EditMode ? (
             <ContactSectionEdit state={state} handleOnChange={handleOnChange} />
+          ) : mobile ? (
+            <ContactSectionMobile state={state} />
           ) : (
             <ContactSection state={state} />
           )}

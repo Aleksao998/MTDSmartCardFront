@@ -15,10 +15,12 @@ function LoginPage(props) {
   };
 
   document.documentElement.classList.remove("nav-open");
-
+  React.useEffect(() => {
+    props.setPageChange(!props.pageChange);
+  }, []);
   return (
     <div>
-      <div className="page-header" style={{}}>
+      <div className="page-headerLog" style={{}}>
         <div className="container login">
           <div className="card-5">
             <h3 className="titleRegistration">Welcome again</h3>

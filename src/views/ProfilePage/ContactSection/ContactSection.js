@@ -164,7 +164,7 @@ const ContactSection = (props) => (
             </div>
             <table style={{ width: "100%" }}>
               <tbody>
-                {props.state.twitter ? (
+                {props.state.twitter[1] ? (
                   <>
                     <tr className="contactRow">
                       <td className="tablePadding">
@@ -197,7 +197,7 @@ const ContactSection = (props) => (
                   </>
                 ) : null}
 
-                {props.state.linkedin ? (
+                {props.state.linkedin[1] ? (
                   <>
                     <tr className="contactRow">
                       <td className="tablePadding">
@@ -229,7 +229,7 @@ const ContactSection = (props) => (
                     </tr>
                   </>
                 ) : null}
-                {props.state.instagram ? (
+                {props.state.instagram[1] ? (
                   <>
                     <tr className="contactRow">
                       <td className="tablePadding">
@@ -262,7 +262,7 @@ const ContactSection = (props) => (
                   </>
                 ) : null}
 
-                {props.state.facebook ? (
+                {props.state.facebook[1] ? (
                   <>
                     <tr className="contactRow">
                       <td className="tablePadding">
@@ -295,7 +295,7 @@ const ContactSection = (props) => (
                   </>
                 ) : null}
 
-                {props.state.snapchat ? (
+                {props.state.snapchat[1] ? (
                   <>
                     <tr className="contactRow">
                       <td className="tablePadding">
@@ -328,7 +328,7 @@ const ContactSection = (props) => (
                   </>
                 ) : null}
 
-                {props.state.youtube ? (
+                {props.state.youtube[1] ? (
                   <>
                     <tr className="contactRow">
                       <td className="tablePadding">
