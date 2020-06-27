@@ -2,7 +2,6 @@
   margin-bottom: 0;
 }
 .page-header {
-  background-color: #b2afab;
   background-position: center center;
   background-size: cover;
   min-height: 100vh;
@@ -16,7 +15,7 @@
   justify-content: center;
 
   .filter::after {
-    background-color: rgba(0, 0, 0, 0.5);
+    //background-color: rgba(0, 0, 0, 0.5);
     content: "";
     display: block;
     height: 100%;
@@ -31,7 +30,7 @@
     max-height: 700px;
   }
   &.page-header-xs {
-    min-height: 40vh !important;
+    min-height: 25vh !important;
   }
 
   &.section-dark {

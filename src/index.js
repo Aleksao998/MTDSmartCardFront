@@ -24,6 +24,10 @@ import { saveStore } from "./localStorage/localStorage";
 //Router
 import AppRoutes from "./routers/routers";
 
+//Scroll to top
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 const store = configureStore();
 
 store.subscribe(
@@ -41,10 +45,21 @@ const options = {
   transition: transitions.SCALE,
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...options}>
+        <ScrollToTop />
         <AppRoutes store={store} />
       </AlertProvider>
     </Provider>

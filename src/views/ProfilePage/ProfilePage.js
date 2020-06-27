@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import queryString from "query-string";
+import { withRouter } from "react-router-dom";
 // reactstrap components
-import { Button } from "reactstrap";
 // core components
 
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
@@ -13,16 +13,13 @@ import MainSectionEdit from "./MainSectionEdit/MainSectionEdit";
 import ContactSection from "./ContactSection/ContactSection";
 import ContactSectionMobile from "./ContactSectionMobile/ContactSectionMobile";
 import ContactSectionEdit from "./ContactSectionEdit/ContactSectionEdit";
+import ContactSectionEditMobile from "./ContactSectionEditMobile/ContactSectionEditMobile";
 
-//Redux
-import { connect } from "react-redux";
-import { addProfileData } from "../../actions/userProfile";
-//localSTorage
-import { saveStore, loadStore } from "../../localStorage/localStorage";
 function ProfilePage(props) {
   document.documentElement.classList.remove("nav-open");
   const linkRef = React.createRef();
   //ReactState
+  const [links, setLink] = React.useState(false);
   const [mobile, setIsMobile] = React.useState(false);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [EditMode, setEditMode] = useState(0);
@@ -50,6 +47,7 @@ function ProfilePage(props) {
     address: "",
     birthday: "",
   });
+  const [showData, setShowData] = useState("");
 
   const openModal = () => {
     setIsOpen(true);
@@ -62,119 +60,76 @@ function ProfilePage(props) {
     const { name, value } = event.target;
     setState({ ...state, [name]: value });
   };
+  const handleOnChangeCheckBox = (event) => {
+    console.log(event.target.checked);
+    const { name } = event.target;
+    console.log(event.target.name);
+    setShowData({ ...showData, [name]: event.target.checked });
+  };
   const downloadContact = () => {
-    const Url = `https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/createVCF?
-                                                          firstName=${state.firstName}&
-                                                          lastName=${state.lastName}&
-                                                          organization=MTD&
-                                                          jobTitle=software engineer&
-                                                          homePhone=${state.homeNumber}&
-                                                          mobileNumber=${state.mobileNumber}&
-                                                          email=${state.email}&
-                                                          workEmail=${state.workEmail}&
-                                                          facebook=${state.facebook}&
-                                                          linkedIn=${state.linkedIn}&
-                                                          twitter=${state.twitter}&
-                                                          snapchat=${state.snapchat}&
-                                                          youtube=${state.youtube}&
-                                                          instagram=${state.instagram}&
-                                                          address=${state.address}`;
+    console.log("test");
+
+    const Url = `http://172.20.10.2:3001/profile/createVCF?firstName=${state.firstName}&lastName=${state.lastName}&organization=MTD&jobTitle=software engineer&homePhone=${state.homeNumber}&mobileNumber=${state.mobileNumber}&email=${state.email}&workEmail=${state.workEmail}&facebook=${state.facebook}&linkedIn=${state.linkedIn}&twitter=${state.twitter}&snapchat=${state.snapchat}&youtube=${state.youtube}&instagram=${state.instagram}&address=${state.address}`;
 
     fetch(Url, {
       method: "GET",
     })
       .then((res) => {
+        console.log(res);
         if (res.status !== 200 && res.status !== 201) {
           throw new Error("Creating or editing a post failed!");
         }
+
         return res.blob();
       })
       .then((blob) => {
-        const href = window.URL.createObjectURL(blob);
-        const a = linkRef.current;
-        a.download = "Lebenslauf.vcf";
-        a.href = href;
-        a.click();
-        a.href = "";
+        const href = URL.createObjectURL(blob);
+        console.log(href);
+        var link = document.createElement("a");
+        link.href = href;
+        link.click();
       })
       .catch((err) => {
         console.log(err);
       });
   };
   const editProfile = () => {
-    if (ButtonText === "Edit profile") {
-      setButtonText("Save");
-      setButtonIcon("fa fa-save");
-      setEditMode(1);
-    } else {
-      props.history.push("/profile-page/" + props.id + "?edit=false");
-      props.setEditProfileFromMenu(0);
-
-      fetch(
-        "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/updateProfile/",
-        {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + props.token,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            firstName: state.firstName,
-            lastName: state.lastName,
-            companyName: state.companyName,
-            jobTitle: state.jobTitle,
-            mobileNumber: state.mobileNumber,
-            homeNumber: state.homeNumber,
-            email: state.email,
-            workEmail: state.workEmail,
-            twitter: state.twitter,
-            linkedin: state.linkedin,
-            facebook: state.facebook,
-            snapchat: state.snapchat,
-            youtube: state.youtube,
-            whatsapp: state.whatsapp,
-            viber: state.viber,
-            address: state.address,
-            birthday: state.birthday,
-          }),
-        }
-      )
-        .then((res) => {})
-        .catch((err) => {
-          console.log(err);
-        });
-
-      props.dispatch(
-        addProfileData(
-          state.firstName,
-          state.lastName,
-          state.companyName,
-          state.jobTitle,
-          state.gender,
-          state.mobileNumber,
-          state.homePhone,
-          state.email,
-          state.workEmail,
-          state.twitter,
-          state.linkedIn,
-          state.facebook,
-          state.snapchat,
-          state.youtube,
-          state.instagram,
-          state.whatsapp,
-          state.viber,
-          state.adress,
-          state.birthday,
-          imageUrl
-        )
-      );
-      setButtonText("Edit profile");
-      setButtonIcon("fa fa-edit");
-      setEditMode(0);
-    }
+    props.history.push("/profile-page/" + props.id);
+    props.setEditProfileFromMenu(0);
+    console.log(showData);
+    fetch("http://172.20.10.2:3001/profile/updateProfile/", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + props.token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: state.firstName,
+        lastName: state.lastName,
+        companyName: state.companyName,
+        jobTitle: state.jobTitle,
+        mobileNumber: state.mobileNumber,
+        homeNumber: state.homeNumber,
+        email: state.email,
+        workEmail: state.workEmail,
+        twitter: state.twitter,
+        linkedin: state.linkedin,
+        facebook: state.facebook,
+        snapchat: state.snapchat,
+        youtube: state.youtube,
+        whatsapp: state.whatsapp,
+        viber: state.viber,
+        address: state.address,
+        birthday: state.birthday,
+        showData: showData,
+      }),
+    })
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
   };
   React.useEffect(() => {
-    console.log("Use effect");
     let params = queryString.parse(props.location.search);
     if (params.edit === "true" || props.editProfileFromMenu === 1) {
       setButtonText("Save");
@@ -188,100 +143,58 @@ function ProfilePage(props) {
     if (props.userId === props.id) {
       setisAuthenticated(true);
     }
-    const store = loadStore();
 
-    if (typeof store !== "undefined") {
-      console.log("local");
-      setState({
-        ...state,
-        firstName: store.profileData.firstname,
-        lastName: store.profileData.lastName,
-        companyName: store.profileData.companyName,
-        jobTitle: store.profileData.jobTitle,
-        mobileNumber: store.contactInfo.mobilePhone,
-        homeNumber: store.contactInfo.homePhone,
-        email: store.contactInfo.email,
-        workEmail: store.contactInfo.workEmail,
-        twitter: store.socialNetwork.twitter,
-        linkedin: store.socialNetwork.linkedIn,
-        facebook: store.socialNetwork.facebook,
-        instagram: store.socialNetwork.instagram,
-        snapchat: store.socialNetwork.snapchat,
-        youtube: store.socialNetwork.youtube,
-        whatsapp: store.directMessages.whatsapp,
-        viber: store.directMessages.viber,
-        address: store.personalInfo.adress,
-        birthday: store.personalInfo.birthday,
-      });
-      setImageUrl(store.profileData.imageUrl);
-    } else {
-      console.log("fetch");
-      fetch(
-        "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/profileData/" +
-          props.id
-      )
-        .then((res) => {
-          if (res.status !== 200) {
-            throw new Error("Failed to fetch posts.");
-          }
-          return res.json();
-        })
-        .then((resData) => {
-          setImageUrl(resData.profileImage);
+    fetch(
+      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/profileData/" +
+        props.id
+    )
+      .then((res) => {
+        if (res.status !== 200) {
+          throw new Error("Failed to fetch posts.");
+        }
+        return res.json();
+      })
+      .then((resData) => {
+        setImageUrl(resData.profileImage);
 
-          setState({
-            ...state,
-            firstName: resData.profileData.profileData.firstName,
-            lastName: resData.profileData.profileData.lastName,
-            companyName: resData.profileData.profileData.companyName,
-            jobTitle: resData.profileData.profileData.jobTitle,
-            mobileNumber:
-              resData.profileData.profileData.contactInfo.mobilePhone,
-            homeNumber: resData.profileData.profileData.contactInfo.homePhone,
-            email: resData.profileData.profileData.contactInfo.email,
-            workEmail: resData.profileData.profileData.contactInfo.workEmail,
-            twitter: resData.profileData.profileData.socialNetwork.twitter,
-            linkedin: resData.profileData.profileData.socialNetwork.linkedIn,
-            facebook: resData.profileData.profileData.socialNetwork.facebook,
-            instagram: resData.profileData.profileData.socialNetwork.instagram,
-            snapchat: resData.profileData.profileData.socialNetwork.snapchat,
-            youtube: resData.profileData.profileData.socialNetwork.youtube,
-            whatsapp: resData.profileData.profileData.directMessage.whatsapp,
-            viber: resData.profileData.profileData.directMessage.viber,
-            address: resData.profileData.profileData.personalInfo.adress,
-            birthday: resData.profileData.profileData.personalInfo.birthday,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
+        setState({
+          ...state,
+          firstName: resData.profileData.profileData.firstName,
+          lastName: resData.profileData.profileData.lastName,
+          companyName: resData.profileData.profileData.companyName,
+          jobTitle: resData.profileData.profileData.jobTitle,
+          mobileNumber: resData.profileData.profileData.contactInfo.mobilePhone,
+          homeNumber: resData.profileData.profileData.contactInfo.homePhone,
+          email: resData.profileData.profileData.contactInfo.email,
+          workEmail: resData.profileData.profileData.contactInfo.workEmail,
+          twitter: resData.profileData.profileData.socialNetwork.twitter,
+          linkedin: resData.profileData.profileData.socialNetwork.linkedIn,
+          facebook: resData.profileData.profileData.socialNetwork.facebook,
+          instagram: resData.profileData.profileData.socialNetwork.instagram,
+          snapchat: resData.profileData.profileData.socialNetwork.snapchat,
+          youtube: resData.profileData.profileData.socialNetwork.youtube,
+          whatsapp: resData.profileData.profileData.directMessage.whatsapp,
+          viber: resData.profileData.profileData.directMessage.viber,
+          address: resData.profileData.profileData.personalInfo.adress,
+          birthday: resData.profileData.profileData.personalInfo.birthday,
         });
-    }
+        console.log();
+        setShowData(resData.profileData.showData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     if (window.innerWidth < 700) {
       setIsMobile(true);
     }
   }, [props.editProfileFromMenu]);
-  React.useEffect(() => {
-    props.setPageChange(!props.pageChange);
-  }, []);
 
   return (
     <>
-      <ProfilePageHeader />
+      <ProfilePageHeader isAuthenticated={isAuthenticated} />
       <a ref={linkRef} />
 
       <div className="section profile-content">
-        {isAuthenticated ? (
-          <div className="EditButtonSection">
-            <Button
-              className="btn-round btnEditSave"
-              color="default"
-              onClick={editProfile}
-            >
-              <i className={ButtonIcon} />
-            </Button>
-          </div>
-        ) : null}
-
         <div className="container noPaddingProfilePage">
           {EditMode ? (
             <MainSectionEdit
@@ -304,9 +217,24 @@ function ProfilePage(props) {
           )}
 
           {EditMode ? (
-            <ContactSectionEdit state={state} handleOnChange={handleOnChange} />
+            mobile ? (
+              <ContactSectionEditMobile
+                state={state}
+                handleOnChange={handleOnChange}
+                showData={showData}
+                editProfile={editProfile}
+                handleOnChangeCheckBox={handleOnChangeCheckBox}
+                pageChange={props.pageChange}
+                setPageChange={props.setPageChange}
+              />
+            ) : (
+              <ContactSectionEdit
+                state={state}
+                handleOnChange={handleOnChange}
+              />
+            )
           ) : mobile ? (
-            <ContactSectionMobile state={state} />
+            <ContactSectionMobile state={state} showData={showData} />
           ) : (
             <ContactSection state={state} />
           )}
@@ -317,10 +245,4 @@ function ProfilePage(props) {
   );
 }
 
-const ConnectedProfilePage = connect((state) => {
-  return {
-    store: state,
-  };
-})(ProfilePage);
-
-export default ConnectedProfilePage;
+export default withRouter(ProfilePage);

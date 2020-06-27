@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import validator from "validator";
 import NavBar from "../components/Navbars/Navbar";
+import NavBarProfile from "../components/Navbars/NavBarProfile";
 
 //Redux store
 import { connect } from "react-redux";
@@ -28,6 +29,7 @@ const AppRoutes = (props) => {
   const [buttonText, setButtonText] = useState("Login");
   const [editProfileFromMenu, setEditProfileFromMenu] = useState(0);
   const [pageChange, setPageChange] = React.useState(false);
+  const [reload, setReload] = React.useState(false);
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     const expiryDate = localStorage.getItem("expiryDate");
@@ -76,7 +78,6 @@ const AppRoutes = (props) => {
     localStorage.removeItem("expiryDate");
     localStorage.removeItem("userId");
   };
-
   const login = (event, email, password) => {
     event.preventDefault();
     if (email === "" || password === "") {
@@ -158,15 +159,23 @@ const AppRoutes = (props) => {
 
   return (
     <div>
-      <NavBar
-        pageChange={pageChange}
-        setPageChange={setPageChange}
-        setEditProfileFromMenu={setEditProfileFromMenu}
-        isAuth={isAuth}
-        userId={userId}
-        logout={logoutHandler}
-        {...props}
-      />
+      {window.location.pathname.startsWith("/profile-page") &&
+      window.location.pathname.substring(14, window.location.pathname.length) !=
+        userId ? (
+        <NavBarProfile />
+      ) : (
+        <NavBar
+          pageChange={pageChange}
+          setPageChange={setPageChange}
+          setEditProfileFromMenu={setEditProfileFromMenu}
+          isAuth={isAuth}
+          userId={userId}
+          logout={logoutHandler}
+          reload={reload}
+          setReload={setReload}
+          {...props}
+        />
+      )}
       <Switch>
         <Route
           path="/"
@@ -175,6 +184,7 @@ const AppRoutes = (props) => {
               {...props}
               setPageChange={setPageChange}
               pageChange={pageChange}
+              reload={reload}
             />
           )}
           exact={true}
@@ -192,6 +202,7 @@ const AppRoutes = (props) => {
               token={token}
               userId={userId}
               setLocalStorage={setLocalStorage}
+              reload={reload}
             />
           )}
         />
@@ -215,6 +226,7 @@ const AppRoutes = (props) => {
               {...props}
               setPageChange={setPageChange}
               pageChange={pageChange}
+              reload={reload}
             />
           )}
         />
@@ -237,6 +249,7 @@ const AppRoutes = (props) => {
               {...props}
               setPageChange={setPageChange}
               pageChange={pageChange}
+              reload={reload}
             />
           )}
         />
@@ -254,14 +267,19 @@ const AppRoutes = (props) => {
               login={login}
               error={error}
               loginButton={loginButton}
+              reload={reload}
             />
           )}
         />
 
         <Route
-          component={NotFoundPage}
-          setPageChange={setPageChange}
-          pageChange={pageChange}
+          render={(props) => (
+            <NotFoundPage
+              {...props}
+              setPageChange={setPageChange}
+              pageChange={pageChange}
+            />
+          )}
         />
       </Switch>
     </div>

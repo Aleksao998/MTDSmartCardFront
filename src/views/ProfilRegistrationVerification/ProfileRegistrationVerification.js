@@ -36,8 +36,8 @@ const ProfileRegistrationVerification = (props) => {
       });
   }, [id]);
   React.useEffect(() => {
-    props.setPageChange(!props.pageChange);
-  }, []);
+    props.setPageChange(true);
+  }, [props.reload]);
   const renderComponent = () => {
     switch (verified) {
       case 0:

@@ -33,32 +33,29 @@ const FillDataForm = (props) => {
     setTab(tab - 1);
   };
   const submit = () => {
-    fetch(
-      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/auth/fillData",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: props.match.params.id,
-          mobileNumber: state.mobileNumber,
-          homeNumber: state.homeNumber,
-          email: state.email,
-          workEmail: state.workEmail,
-          twitter: state.twitter,
-          linkedin: state.linkedin,
-          facebook: state.facebook,
-          snapchat: state.snapchat,
-          youtube: state.youtube,
-          instagram: state.instagram,
-          whatsapp: state.whatsapp,
-          viber: state.viber,
-          address: state.address,
-          birthday: state.birthday,
-        }),
-      }
-    )
+    fetch("http://localhost:3001/auth/fillData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: props.match.params.id,
+        mobileNumber: state.mobileNumber,
+        homeNumber: state.homeNumber,
+        email: state.email,
+        workEmail: state.workEmail,
+        twitter: state.twitter,
+        linkedin: state.linkedin,
+        facebook: state.facebook,
+        snapchat: state.snapchat,
+        youtube: state.youtube,
+        instagram: state.instagram,
+        whatsapp: state.whatsapp,
+        viber: state.viber,
+        address: state.address,
+        birthday: state.birthday,
+      }),
+    })
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Creating or editing a post failed!");

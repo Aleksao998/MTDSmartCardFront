@@ -8,7 +8,7 @@ const ContactSection = (props) => (
         <div className="col-xl-4 col-md-4">
           <table style={{ width: "100%" }}>
             <tbody>
-              {props.state.mobileNumber ? (
+              {props.showData.mobilePhone ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -34,14 +34,14 @@ const ContactSection = (props) => (
                         href={"tel:+" + props.state.mobileNumber}
                         style={{ fontWeight: "500", color: "black" }}
                       >
-                        +381{props.state.mobileNumber}
+                        {props.state.mobileNumber}
                       </a>
                     </td>
                   </tr>
                 </>
               ) : null}
 
-              {props.state.homeNumber ? (
+              {props.showData.homePhone ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -67,14 +67,14 @@ const ContactSection = (props) => (
                         href={"tel:+" + props.state.homeNumber}
                         style={{ fontWeight: "500", color: "black" }}
                       >
-                        +381{props.state.homeNumber}
+                        {props.state.homeNumber}
                       </a>
                     </td>
                   </tr>
                 </>
               ) : null}
 
-              {props.state.email ? (
+              {props.showData.email ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -107,7 +107,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.workEmail ? (
+              {props.showData.workEmail ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -140,7 +140,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.twitter[1] ? (
+              {props.showData.twitter ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -173,7 +173,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.linkedin[1] ? (
+              {props.showData.linkedIn ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -205,7 +205,7 @@ const ContactSection = (props) => (
                   </tr>
                 </>
               ) : null}
-              {props.state.instagram[1] ? (
+              {props.showData.instagram ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -238,7 +238,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.facebook[1] ? (
+              {props.showData.facebook ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -271,7 +271,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.snapchat[1] ? (
+              {props.showData.snapchat ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -304,7 +304,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.youtube[1] ? (
+              {props.showData.youtube ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -337,7 +337,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.whatsapp ? (
+              {props.showData.whatsapp ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -370,7 +370,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.viber ? (
+              {props.showData.viber ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -402,7 +402,7 @@ const ContactSection = (props) => (
                   </tr>
                 </>
               ) : null}
-              {props.state.address ? (
+              {props.showData.address ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">
@@ -439,7 +439,7 @@ const ContactSection = (props) => (
                 </>
               ) : null}
 
-              {props.state.birthday ? (
+              {props.showData.birthday ? (
                 <>
                   <tr className="contactRow">
                     <td className="tablePadding">

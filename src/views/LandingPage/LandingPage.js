@@ -21,6 +21,9 @@ function LandingPage(props) {
     };
   }, []);
 
+  React.useEffect(() => {
+    props.setPageChange(!props.pageChange);
+  }, [props.reload]);
   return (
     <div>
       <LandingPageHeader {...props} />

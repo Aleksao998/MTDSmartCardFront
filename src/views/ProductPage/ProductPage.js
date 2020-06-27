@@ -11,7 +11,7 @@ function ProductPage(props) {
   React.useEffect(() => {
     props.setPageChange(!props.pageChange);
     document.body.classList.add("profile-page");
-  }, []);
+  }, [props.reload]);
 
   return (
     <div>

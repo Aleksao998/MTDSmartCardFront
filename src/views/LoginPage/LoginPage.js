@@ -17,7 +17,7 @@ function LoginPage(props) {
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     props.setPageChange(!props.pageChange);
-  }, []);
+  }, [props.reload]);
   return (
     <div>
       <div className="page-headerLog" style={{}}>

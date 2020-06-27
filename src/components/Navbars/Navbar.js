@@ -150,61 +150,93 @@ function ExamplesNavbar(props) {
             isOpen={navbarCollapse}
           >
             <Nav navbar>
-              <NavItem>
-                <NavLink to="/" tag={Link}>
-                  Home Page
-                </NavLink>
-              </NavItem>
+              {props.isAuth ? (
+                <NavItem>
+                  <NavLink
+                    to={profileUrl}
+                    tag={Link}
+                    onClick={() => {
+                      props.setEditProfileFromMenu(0);
+                      props.setReload(!props.reload);
+                    }}
+                  >
+                    My profile
+                  </NavLink>
+                </NavItem>
+              ) : (
+                <NavItem>
+                  <NavLink
+                    to="/"
+                    tag={Link}
+                    onClick={() => {
+                      props.setReload(!props.reload);
+                    }}
+                  >
+                    Home Page
+                  </NavLink>
+                </NavItem>
+              )}
 
-              <NavItem>
-                <NavLink to="/product-page" tag={Link}>
-                  Product Page
-                </NavLink>
-              </NavItem>
-
+              {props.isAuth ? (
+                <NavItem>
+                  <NavLink
+                    onClick={() => {
+                      props.setEditProfileFromMenu(1);
+                      props.setReload(!props.reload);
+                    }}
+                    tag={Link}
+                    to={profileUrl + "?edit=true"}
+                  >
+                    Setting
+                  </NavLink>
+                </NavItem>
+              ) : (
+                <NavItem>
+                  <NavLink
+                    to="/product-page"
+                    tag={Link}
+                    onClick={() => {
+                      props.setReload(!props.reload);
+                    }}
+                  >
+                    Product Page
+                  </NavLink>
+                </NavItem>
+              )}
               {props.isAuth ? (
                 <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
                   <DropdownToggle nav caret>
-                    Profile
+                    Other
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem
-                      onClick={() => {
-                        props.setEditProfileFromMenu(0);
-                      }}
-                      tag={Link}
-                      to={profileUrl}
-                    >
-                      My profile
-                    </DropdownItem>
-                    <DropdownItem
-                      onClick={() => {
-                        props.setEditProfileFromMenu(1);
-                      }}
-                      tag={Link}
-                      to={profileUrl + "?edit=true"}
-                    >
-                      Setting
-                    </DropdownItem>
+                    <DropdownItem onClick={openModal}>How to use</DropdownItem>
                     <DropdownItem onClick={openModal}>
                       Delete account
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem onClick={props.logout} tag={Link} to="/">
-                      Log out
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               ) : (
                 <NavItem>
-                  <NavLink to="/login-page" tag={Link}>
+                  <NavLink
+                    to="/login-page"
+                    tag={Link}
+                    onClick={() => {
+                      props.setReload(!props.reload);
+                    }}
+                  >
                     Login
                   </NavLink>
                 </NavItem>
               )}
               {props.isAuth ? (
                 <NavItem onClick={props.logout}>
-                  <NavLink to="/" tag={Link}>
+                  <NavLink
+                    to="/"
+                    tag={Link}
+                    onClick={() => {
+                      props.setReload(!props.reload);
+                    }}
+                  >
                     logout
                   </NavLink>
                 </NavItem>
@@ -212,7 +244,13 @@ function ExamplesNavbar(props) {
 
               {props.isAuth ? null : (
                 <NavItem onClick={props.logout}>
-                  <NavLink to="/checkout" tag={Link}>
+                  <NavLink
+                    to="/checkout"
+                    tag={Link}
+                    onClick={() => {
+                      props.setReload(!props.reload);
+                    }}
+                  >
                     Buy card
                   </NavLink>
                 </NavItem>

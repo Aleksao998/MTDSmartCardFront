@@ -136,7 +136,7 @@ const CheckoutPage = (props) => {
   };
   React.useEffect(() => {
     props.setPageChange(!props.pageChange);
-  }, []);
+  }, [props.reload]);
   return (
     <div className="checkoutPage">
       <div className="checkout container" style={{ marginBottom: "40px" }}>
