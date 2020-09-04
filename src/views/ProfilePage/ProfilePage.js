@@ -60,16 +60,40 @@ function ProfilePage(props) {
     const { name, value } = event.target;
     setState({ ...state, [name]: value });
   };
+
+  const handleOnChangeSocial = (event) => {
+    const { name, value } = event.target;
+    if (name == "twitter" || name == "instagram" || name == "snapchat") {
+      setState({ ...state, [name]: [value, state[name][1]] });
+    } else {
+      setState({ ...state, [name]: [state[name][0], value] });
+    }
+  };
   const handleOnChangeCheckBox = (event) => {
-    console.log(event.target.checked);
     const { name } = event.target;
-    console.log(event.target.name);
+
     setShowData({ ...showData, [name]: event.target.checked });
   };
   const downloadContact = () => {
     console.log("test");
-
-    const Url = `http://172.20.10.2:3001/profile/createVCF?firstName=${state.firstName}&lastName=${state.lastName}&organization=MTD&jobTitle=software engineer&homePhone=${state.homeNumber}&mobileNumber=${state.mobileNumber}&email=${state.email}&workEmail=${state.workEmail}&facebook=${state.facebook}&linkedIn=${state.linkedIn}&twitter=${state.twitter}&snapchat=${state.snapchat}&youtube=${state.youtube}&instagram=${state.instagram}&address=${state.address}`;
+    console.log(showData.homeNumber);
+    const Url = `http://192.168.0.32:3001/profile/createVCF?firstName=${
+      state.firstName
+    }&lastName=${
+      state.lastName
+    }&organization=MTD&jobTitle=software engineer&homePhone=${
+      showData.homePhone ? state.homeNumber : ""
+    }&mobileNumber=${showData.mobilePhone ? state.mobileNumber : ""}&email=${
+      showData.email ? state.email : ""
+    }&workEmail=${showData.workEmail ? state.workEmail : ""}&facebook=${
+      showData.facebook ? state.facebook[1] : ""
+    }&linkedIn=${showData.linkedIn ? state.linkedin[1] : ""}&twitter=${
+      showData.twitter ? state.twitter[1] : ""
+    }&snapchat=${showData.instagram ? state.snapchat[1] : ""}&youtube=${
+      showData.youtube ? state.youtube[1] : ""
+    }&instagram=${showData.instagram ? state.instagram[1] : ""}&address=${
+      showData.adress ? state.address : ""
+    }`;
 
     fetch(Url, {
       method: "GET",
@@ -94,13 +118,10 @@ function ProfilePage(props) {
       });
   };
   const editProfile = () => {
-    props.history.push("/profile-page/" + props.id);
-    props.setEditProfileFromMenu(0);
-    console.log(showData);
-    fetch("http://172.20.10.2:3001/profile/updateProfile/", {
+    fetch("http://192.168.0.32:3001/profile/updateProfile/", {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + props.token,
+        Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -113,6 +134,7 @@ function ProfilePage(props) {
         email: state.email,
         workEmail: state.workEmail,
         twitter: state.twitter,
+        instagram: state.instagram,
         linkedin: state.linkedin,
         facebook: state.facebook,
         snapchat: state.snapchat,
@@ -124,7 +146,10 @@ function ProfilePage(props) {
         showData: showData,
       }),
     })
-      .then((res) => {})
+      .then((res) => {
+        props.history.push("/profile-page/" + props.id);
+        props.setEditProfileFromMenu(0);
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -144,10 +169,7 @@ function ProfilePage(props) {
       setisAuthenticated(true);
     }
 
-    fetch(
-      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/profileData/" +
-        props.id
-    )
+    fetch("http://192.168.0.32:3001/profile/profileData/" + props.id)
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Failed to fetch posts.");
@@ -156,7 +178,7 @@ function ProfilePage(props) {
       })
       .then((resData) => {
         setImageUrl(resData.profileImage);
-
+        console.log(resData.profileData.profileData.contactInfo.mobilePhone);
         setState({
           ...state,
           firstName: resData.profileData.profileData.firstName,
@@ -178,7 +200,7 @@ function ProfilePage(props) {
           address: resData.profileData.profileData.personalInfo.adress,
           birthday: resData.profileData.profileData.personalInfo.birthday,
         });
-        console.log();
+
         setShowData(resData.profileData.showData);
       })
       .catch((err) => {
@@ -216,28 +238,34 @@ function ProfilePage(props) {
             />
           )}
 
-          {EditMode ? (
-            mobile ? (
-              <ContactSectionEditMobile
+          {
+            EditMode ? (
+              mobile ? (
+                <ContactSectionEditMobile
+                  state={state}
+                  handleOnChange={handleOnChange}
+                  handleOnChangeSocial={handleOnChangeSocial}
+                  showData={showData}
+                  editProfile={editProfile}
+                  handleOnChangeCheckBox={handleOnChangeCheckBox}
+                  pageChange={props.pageChange}
+                  setPageChange={props.setPageChange}
+                />
+              ) : (
+                <ContactSectionEdit
+                  state={state}
+                  handleOnChange={handleOnChange}
+                />
+              )
+            ) : mobile ? (
+              <ContactSectionMobile
                 state={state}
-                handleOnChange={handleOnChange}
                 showData={showData}
-                editProfile={editProfile}
-                handleOnChangeCheckBox={handleOnChangeCheckBox}
                 pageChange={props.pageChange}
                 setPageChange={props.setPageChange}
               />
-            ) : (
-              <ContactSectionEdit
-                state={state}
-                handleOnChange={handleOnChange}
-              />
-            )
-          ) : mobile ? (
-            <ContactSectionMobile state={state} showData={showData} />
-          ) : (
-            <ContactSection state={state} />
-          )}
+            ) : null //<ContactSection state={state} />
+          }
         </div>
       </div>
       <DemoFooter />

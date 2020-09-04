@@ -4,10 +4,6 @@ import { Input, Label, FormGroup, Button } from "reactstrap";
 
 function ContactEditSection(props) {
   document.documentElement.classList.remove("nav-open");
-  React.useEffect(() => {
-    console.log("check showData");
-    console.log(props.showData);
-  }, [props.showData]);
 
   React.useEffect(() => {
     props.setPageChange(!props.pageChange);
@@ -37,7 +33,7 @@ function ContactEditSection(props) {
                     <div>
                       <Input
                         name="mobileNumber"
-                        type="tel"
+                        type="txt"
                         value={props.state.mobileNumber}
                         onChange={props.handleOnChange}
                       ></Input>
@@ -192,8 +188,8 @@ function ContactEditSection(props) {
                     <Input
                       name="twitter"
                       type="text"
-                      value={props.state.twitter[1]}
-                      onChange={props.handleOnChange}
+                      value={props.state.twitter[0]}
+                      onChange={props.handleOnChangeSocial}
                     ></Input>
                   </td>
                   <td className="tablePadding">
@@ -230,8 +226,8 @@ function ContactEditSection(props) {
                     <Input
                       name="instagram"
                       type="text"
-                      value={props.state.instagram[1]}
-                      onChange={props.handleOnChange}
+                      value={props.state.instagram[0]}
+                      onChange={props.handleOnChangeSocial}
                     ></Input>
                   </td>
                   <td className="tablePadding">
@@ -269,7 +265,7 @@ function ContactEditSection(props) {
                       name="linkedin"
                       type="text"
                       value={props.state.linkedin[1]}
-                      onChange={props.handleOnChange}
+                      onChange={props.handleOnChangeSocial}
                     ></Input>
                   </td>
                   <td className="tablePadding">
@@ -307,7 +303,7 @@ function ContactEditSection(props) {
                       name="facebook"
                       type="text"
                       value={props.state.facebook[1]}
-                      onChange={props.handleOnChange}
+                      onChange={props.handleOnChangeSocial}
                     ></Input>
                   </td>
                   <td className="tablePadding">
@@ -344,8 +340,8 @@ function ContactEditSection(props) {
                     <Input
                       name="snapchat"
                       type="text"
-                      value={props.state.snapchat[1]}
-                      onChange={props.handleOnChange}
+                      value={props.state.snapchat[0]}
+                      onChange={props.handleOnChangeSocial}
                     ></Input>
                   </td>
                   <td className="tablePadding">
@@ -383,7 +379,7 @@ function ContactEditSection(props) {
                       name="youtube"
                       type="text"
                       value={props.state.youtube[1]}
-                      onChange={props.handleOnChange}
+                      onChange={props.handleOnChangeSocial}
                     ></Input>
                   </td>
                   <td className="tablePadding">

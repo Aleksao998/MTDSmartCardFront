@@ -2,7 +2,7 @@ import React from "react";
 
 //Sections
 import FeatureSection from "./FeatureSection/FeatureSection";
-import VideoSection from "./VideoSection/VideoSection";
+import CompatibilitySection from "./CompatibilitySection/CompatibilitySection";
 import TitleSection from "./TitleSection/TitleSection";
 import DetailSection from "./DetailSection/DetailSection";
 import UniqueSection from "./UniqueSections/UniqueSections";
@@ -19,7 +19,7 @@ function ProductPage(props) {
         <TitleSection />
         <FeatureSection />
         <DetailSection />
-        <VideoSection />
+        <CompatibilitySection />
         <UniqueSection />
       </div>
     </div>

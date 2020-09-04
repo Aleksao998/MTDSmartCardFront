@@ -44,14 +44,13 @@ function ExamplesNavbar(props) {
 
   React.useEffect(() => {
     if (navbarCollapse) {
-      console.log("usao");
       setNavbarCollapse(!navbarCollapse);
     }
   }, [props.pageChange]);
 
   const deleteUser = () => {
     fetch(
-      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/deleteUser",
+      "https:ec2-18-224-200-176.us-east-2.compute.amazonaws.com/profile/deleteUser",
       {
         method: "POST",
         headers: {
@@ -66,7 +65,7 @@ function ExamplesNavbar(props) {
         if (res.status !== 200) {
           throw new Error("Creating or editing a post failed!");
         }
-        console.log("usao");
+
         props.history.push("/");
         props.logout();
         closeModal();
@@ -187,7 +186,7 @@ function ExamplesNavbar(props) {
                     tag={Link}
                     to={profileUrl + "?edit=true"}
                   >
-                    Setting
+                    Update Profile
                   </NavLink>
                 </NavItem>
               ) : (
@@ -203,19 +202,7 @@ function ExamplesNavbar(props) {
                   </NavLink>
                 </NavItem>
               )}
-              {props.isAuth ? (
-                <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
-                  <DropdownToggle nav caret>
-                    Other
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem onClick={openModal}>How to use</DropdownItem>
-                    <DropdownItem onClick={openModal}>
-                      Delete account
-                    </DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              ) : (
+              {props.isAuth ? null : (
                 <NavItem>
                   <NavLink
                     to="/login-page"

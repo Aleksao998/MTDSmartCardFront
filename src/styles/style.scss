@@ -1,4 +1,5 @@
 @import "./base/base";
+@import "../assets/scss/paper-kit/variables";
 @import "../views/RegistrationPage/registrationStyle";
 @import "../views/ErrorPages/404ErrorPage/notFoundStyle";
 @import "../views/ProductPage/productPage";
@@ -11,6 +12,9 @@
 @import "../views//ProfilePage//imageModal/imageModal";
 @import "../views/ProfilRegistrationVerification/FillDataForm/fillDataForm";
 @import "../views/CheckoutPage/checkout";
+@import "../views/ProductPage/CompatibilitySection/compatibility";
+@import "../views/LandingPage/ContactSection/_contactPage";
+@import "../views/LandingPage/VideoSection/_videoSection";
 $fa-font-path: "~@fortawesome/fontawesome-free-webfonts/webfonts";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";

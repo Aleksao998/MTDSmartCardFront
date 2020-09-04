@@ -90,19 +90,16 @@ const AppRoutes = (props) => {
     }
     setButtonText(null);
     setLoginButton(true);
-    fetch(
-      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/auth/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      }
-    )
+    fetch("http://192.168.0.32:3001/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
       .then((res) => {
         if (res.status === 500) {
           throw new Error("Techical problems with server, please trt later!");

@@ -28,7 +28,6 @@ function ExamplesNavbar(props) {
 
   React.useEffect(() => {
     if (navbarCollapse) {
-      console.log("usao");
       setNavbarCollapse(!navbarCollapse);
     }
   }, [props.pageChange]);

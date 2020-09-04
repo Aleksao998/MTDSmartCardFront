@@ -15,9 +15,7 @@ const ProfileRegistrationVerification = (props) => {
   useEffect(() => {
     console.log("___________________");
     console.log(props.location.search);
-    const url =
-      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/findProfileById/" +
-      id;
+    const url = "http://192.168.0.32:3001/profile/findProfileById/" + id;
     fetch(url)
       .then((res) => {
         if (res.status === 200) {

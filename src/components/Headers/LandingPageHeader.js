@@ -27,6 +27,7 @@ function LandingPageHeader(props) {
             style={{ color: "black", marginTop: "-190px" }}
           >
             <h1 style={{ fontWeight: "bold" }}>Smart Card</h1>
+            <h3>The last business card you’ll ever need</h3>
             <h3></h3>
             <br />
             <Button
@@ -52,6 +53,7 @@ function LandingPageHeader(props) {
               <i className="fa fa-play" />
               Buy Product
             </Button>
+            <p>*No app required!</p>
           </div>
         </Container>
       </div>

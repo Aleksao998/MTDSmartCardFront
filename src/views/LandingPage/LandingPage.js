@@ -7,7 +7,7 @@ import DemoFooter from "components/Footers/DemoFooter.js";
 
 //Sections
 import DetailSection from "./DetailSection/DetailSection";
-import CredentialSection from "./CreadentialsSection/CredentialSection";
+import VideoSection from "./VideoSection/VideoSection";
 import ContactSection from "./ContactSection/ContactSection";
 
 function LandingPage(props) {
@@ -29,7 +29,7 @@ function LandingPage(props) {
       <LandingPageHeader {...props} />
       <div className="main">
         <DetailSection {...props} />
-        <CredentialSection />
+        <VideoSection />
         <ContactSection />
       </div>
       <DemoFooter />

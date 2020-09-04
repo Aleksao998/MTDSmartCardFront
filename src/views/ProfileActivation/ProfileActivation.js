@@ -5,8 +5,7 @@ const ProfileActivation = (props) => {
   useEffect(() => {
     props.setPageChange(!props.pageChange);
     const url =
-      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/auth/validateProfile/" +
-      props.match.params.id;
+      "http://192.168.0.32:3001/auth/validateProfile/" + props.match.params.id;
     fetch(url)
       .then((res) => {
         if (res.status === 401) {

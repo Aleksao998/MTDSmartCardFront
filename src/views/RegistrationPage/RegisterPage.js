@@ -78,34 +78,28 @@ function RegisterPage(props) {
     }
 
     //Check if email already exist
-    fetch(
-      "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/checkEmail?email=" +
-        state.email
-    )
+    fetch("http://192.168.0.32:3001/profile/checkEmail?email=" + state.email)
       .then((res) => {
         if (res.status !== 200) {
           throw new Error("Email already exists!");
         }
 
-        return fetch(
-          "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/auth/signup",
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              id: props.id,
-              email: state.email,
-              password: state.password,
-              firstName: state.firstName,
-              lastName: state.lastName,
-              companyName: state.companyName,
-              jobTitle: state.jobTitle,
-              gender: selectedOption,
-            }),
-          }
-        );
+        return fetch("http://192.168.0.32:3001/auth/signup", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: props.id,
+            email: state.email,
+            password: state.password,
+            firstName: state.firstName,
+            lastName: state.lastName,
+            companyName: state.companyName,
+            jobTitle: state.jobTitle,
+            gender: selectedOption,
+          }),
+        });
       })
       .then((res) => {
         if (res.status !== 200) {

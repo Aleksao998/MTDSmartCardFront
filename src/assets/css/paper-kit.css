@@ -6455,11 +6455,16 @@ License - nucleoapp.com/license/
 }
 
 .section {
-  padding: 70px 0;
+  padding: 50px 0;
   position: relative;
   background-color: #ffffff;
 }
 
+@media only screen and (max-width: 700px) {
+  .section {
+    padding: 35px 0;
+  }
+}
 .section-with-space {
   padding: 60px 0;
 }

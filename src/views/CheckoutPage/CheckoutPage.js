@@ -83,23 +83,20 @@ const CheckoutPage = (props) => {
       console.log("error");
       return;
     } else {
-      fetch(
-        "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/order/createOrder",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            number: state.cardNumber,
-            name: state.name,
-            lastName: state.lastName,
-            address: state.address,
-            city: state.city,
-            postCode: state.postCode,
-            email: state.email,
-            phoneNumber: state.phoneNumber,
-          }),
-        }
-      )
+      fetch("http://192.168.0.32:3001/order/createOrder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          number: state.cardNumber,
+          name: state.name,
+          lastName: state.lastName,
+          address: state.address,
+          city: state.city,
+          postCode: state.postCode,
+          email: state.email,
+          phoneNumber: state.phoneNumber,
+        }),
+      })
         .then((res) => {
           if (res.status !== 200) {
             throw new Error("Error creating User");

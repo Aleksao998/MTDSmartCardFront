@@ -6,13 +6,12 @@ const UniqueSection = () => (
       <div className="row d-flex justify-content-center">
         <div className="col-md-8 pb-40 header-text">
           <h1>Some Features that Made us Unique</h1>
-          <p>Who are in extremely love with eco friendly system.</p>
         </div>
       </div>
       <div className="row">
         <div className="col-lg-4 col-md-6">
           <div className="single-service">
-            <h4>
+            <h4 className="uniqueTitle">
               <span className="lnr lnr-user"></span>Instant Contact Transfer
             </h4>
             <p>
@@ -23,7 +22,7 @@ const UniqueSection = () => (
         </div>
         <div className="col-lg-4 col-md-6">
           <div className="single-service">
-            <h4>
+            <h4 className="uniqueTitle">
               <span className="lnr lnr-license"></span>Unlimited Taps
             </h4>
             <p>Each MTD Smart Card has a unlimited life span.</p>
@@ -33,7 +32,7 @@ const UniqueSection = () => (
         </div>
         <div className="col-lg-4 col-md-6">
           <div className="single-service">
-            <h4>
+            <h4 className="uniqueTitle">
               <span className="lnr lnr-phone"></span>ALL-In-One
             </h4>
             <p>
@@ -45,7 +44,7 @@ const UniqueSection = () => (
         </div>
         <div className="col-lg-4 col-md-6">
           <div className="single-service">
-            <h4>
+            <h4 className="uniqueTitle">
               <span className="lnr lnr-rocket"></span>Encryption
             </h4>
             <p>
@@ -56,7 +55,7 @@ const UniqueSection = () => (
         </div>
         <div className="col-lg-4 col-md-6">
           <div className="single-service">
-            <h4>
+            <h4 className="uniqueTitle">
               <span className="lnr lnr-diamond"></span>Modern Technology
             </h4>
             <p>
@@ -68,7 +67,7 @@ const UniqueSection = () => (
         </div>
         <div className="col-lg-4 col-md-6">
           <div className="single-service">
-            <h4>
+            <h4 className="uniqueTitle">
               <span className="lnr lnr-bubble"></span>Beautiful Design
             </h4>
             <p>

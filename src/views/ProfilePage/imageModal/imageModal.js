@@ -38,7 +38,7 @@ const ImageModal = (props) => {
     };
     axios
       .post(
-        "https://cors-anywhere.herokuapp.com/http://ec2-35-158-214-30.eu-central-1.compute.amazonaws.com:3001/profile/uploadImage",
+        "http://192.168.0.32:3001/profile/uploadImage",
         bodyFormData,
         config
       )
